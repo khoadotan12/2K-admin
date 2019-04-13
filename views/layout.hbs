@@ -245,14 +245,12 @@
         <div class="page-header float-right">
           <div class="page-title">
             <ol class="breadcrumb text-right">
-              {{#if root}}
-              <li>
-                <a href="/">{{root}}</a>
-              </li>
-              {{/if}}
               {{#if category}}
               <li>
-                <a href="/">{{category}}</a>
+                <a href="/">Trang chủ</a>
+              </li>
+              <li>
+                <a href={{categoryLink}}>{{category}}</a>
               </li>
               {{/if}}
               <li class="active">{{title}}</li>

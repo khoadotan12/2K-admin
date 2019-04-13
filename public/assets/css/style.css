@@ -1287,7 +1287,7 @@ body.open .navbar .navbar-brand.hidden {
       margin: 0;
       padding: 13.5px 0;
       background: #fff;
-      text-transform: capitalize; }
+     }
     .right-panel .page-header .breadcrumb > li + li:before {
       padding: 0 5px;
       color: #ccc;

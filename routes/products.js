@@ -22,4 +22,8 @@ router.get('/', (req, res, next) => {
     res.render('products/index', { category: 'Sản phẩm', categoryLink: '/product', title: 'Danh sách sản phẩm', data })
 });
 
+router.get('/add', (req, res, next) => {
+    res.render('products/add', { category: 'Sản phẩm', categoryLink: '/product', title: 'Thêm sản phẩm' });
+});
+
 module.exports = router;

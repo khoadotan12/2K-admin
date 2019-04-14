@@ -1,27 +1,36 @@
 var express = require('express');
 var router = express.Router();
 
+function formatPrice(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 router.get('/', (req, res, next) => {
-    const price = [20990000, 28600000, 12990000];
+    const price = [20990000, 28600000, 12990000, 4990000];
     const data = [{
         name: 'Samsung Galaxy S10',
         brand: 'Samsung',
         count: 100,
-        price: price[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
+        price: formatPrice(price[0]),
     }, {
         name: 'iPhone XS Max 64 GB',
         brand: 'Apple',
         count: 542,
-        price: price[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
+        price: formatPrice(price[1]),
+    }, {
+        name: 'Samsung Galaxy M20',
+        brand: 'Samsung',
+        count: 70,
+        price: formatPrice(price[3]),
     }, {
         name: 'Xiaomi Mi Mix 3',
         brand: 'Xiaomi',
         count: 0,
-        price: price[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
+        price: formatPrice(price[2]),
     }];
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
-    })
+    });
     res.render('products/index', { category: 'Sản phẩm', categoryLink: '/product', title: 'Danh sách sản phẩm', data })
 });
 

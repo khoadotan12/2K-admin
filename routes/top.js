@@ -50,9 +50,35 @@ router.get('/products', (req, res, next) => {
 });
 
 router.get('/brands', (req, res, next) => {
-    const data = [{
-
-    }];
+    const data = [
+        {
+            brand: 'Samsung',
+            count: 15933,
+            revenue: '4,410,099,000'
+        }, {
+            brand: 'Apple',
+            count: 14447,
+            revenue: '7,822,552,000'
+        },
+        {
+            brand: 'Oppo',
+            count: 10392,
+            revenue: '2,168,338,000'
+        }, {
+            brand: 'Xiaomi',
+            count: 6587,
+            revenue: '869,191,000'
+        },
+        {
+            brand: 'Huawei',
+            count: 2413,
+            revenue: '651,699,000'
+        }, {
+            brand: 'ASUS',
+            count: 1678,
+            revenue: '479,921,000'
+        },
+    ];
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
     });

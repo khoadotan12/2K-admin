@@ -18,7 +18,10 @@ router.get('/', (req, res, next) => {
         brand: 'Xiaomi',
         count: 0,
         price: price[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
-    },]
+    }];
+    data.forEach((element, index) => {
+        element.id = (index + 1).toString();
+    })
     res.render('products/index', { category: 'Sản phẩm', categoryLink: '/product', title: 'Danh sách sản phẩm', data })
 });
 

@@ -82,7 +82,10 @@ router.get('/', function (req, res, next) {
     username: 'wilfernerd',
     email: 'ghost@mac.com',
     phone: '013431434',
-  }]
+  }];
+  users.forEach((element, index) => {
+    element.id = (index + 1).toString();
+  });
   res.render('users/index', { category: 'Tài khoản', categoryLink: '/users', title: 'Danh sách tài khoản', users: users });
 });
 

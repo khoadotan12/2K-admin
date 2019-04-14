@@ -8,30 +8,42 @@ function formatPrice(price) {
 const sumArr = arr => arr.reduce((a, b) => a + b, 0);
 
 router.get('/date', (req, res, next) => {
-    const price = [6910000, 13940000, 31059000, 1099000, 9401000]
+    const price = [6910000, 13940000, 31059000, 1099000, 9401000];
     const data = [
         {
+            name: 'Samsung Galaxy A7',
             price: formatPrice(price[0]),
-            status: 0,
-        }, {
+            count: 1,
+        },
+        {
+            name: 'Xiaomi Mi Pro',
             price: formatPrice(price[1]),
-            status: 1,
-        }, {
+            count: 4,
+        },
+        {
+            name: 'iPhone XS Max 256 GB',
             price: formatPrice(price[2]),
-            status: 1,
-        }, {
+            count: 2,
+        },
+        {
+            name: 'Oppo Find X',
             price: formatPrice(price[3]),
-            status: 1,
-        }, {
+            count: 1,
+        },
+        {
+            name: 'Samsung Galaxy A9',
             price: formatPrice(price[4]),
-            status: 0,
+            count: 3,
         },
     ];
+    let sum = 0;
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
+        element.total = formatPrice(price[index] * element.count);
+        sum += (price[index] * element.count);
     });
-    const total = formatPrice(sumArr(price));
-    res.render('revenue/date', { category: 'Doanh thu', categoryLink: '/', title: 'Doanh thu trong ngày', data, total });
+    const totalSum = formatPrice(sum);
+    res.render('revenue/date', { category: 'Doanh thu', categoryLink: '/', title: 'Doanh thu trong ngày', data, totalSum });
 });
 
 router.get('/week', (req, res, next) => {

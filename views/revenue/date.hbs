@@ -21,25 +21,21 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Mã đơn hàng</th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Thành tiền</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each data}}
                     <tr>
                         <th scope="row">{{this.id}}</th>
+                        <td>{{this.name}}</td>
+                        <td>{{this.count}}</td>
                         <td>{{this.price}}</td>
-                        <td>
-                            {{#if this.status}}
-                            <a style="color: blue" class="fa fa-sync-alt" href="#" alt="Đang giao"></a>
-                            <span>Đang giao hàng</span>
-                            {{else}}
-                            <a style="color: green" class="fa fa-check" href="#" alt="Giao hàng thành công"></a>
-                            <span>Giao hàng thành công</span>
-                            {{/if}}
-                        </td>
+                        <td>{{this.total}}</td>
                     </tr>
                     {{else}}
                     <tr>
@@ -50,7 +46,7 @@
             </table>
         </div>
         <div class="card-header">
-            <strong>Tổng cộng: {{total}} đồng</strong>
+            <strong>Tổng cộng: {{totalSum}} đồng</strong>
         </div>
     </div>
 </div>

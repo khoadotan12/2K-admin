@@ -46,7 +46,7 @@ router.get('/products', (req, res, next) => {
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
     });
-    res.render('top/product', { category: 'Top 10', categoryLink: '/', title: 'Sản phẩm', data: data });
+    res.render('top/product', { category: 'Top 10', categoryLink: '/', title: 'Sản phẩm', data });
 });
 
 router.get('/brands', (req, res, next) => {
@@ -82,7 +82,7 @@ router.get('/brands', (req, res, next) => {
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
     });
-    res.render('top/brand', { category: 'Top 10', categoryLink: '/', title: 'Thương hiệu', data: data });
+    res.render('top/brand', { category: 'Top 10', categoryLink: '/', title: 'Thương hiệu', data });
 });
 
 

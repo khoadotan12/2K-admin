@@ -86,7 +86,7 @@ router.get('/', function (req, res, next) {
   users.forEach((element, index) => {
     element.id = (index + 1).toString();
   });
-  res.render('users/index', { category: 'Tài khoản', categoryLink: '/users', title: 'Danh sách tài khoản', users: users });
+  res.render('users/index', { category: 'Tài khoản', categoryLink: '/users', title: 'Danh sách tài khoản', users });
 });
 
 router.get('/add', function (req, res, next) {

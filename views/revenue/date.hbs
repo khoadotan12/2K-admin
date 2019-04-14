@@ -14,3 +14,43 @@
             </div>
         </div>
     </div>
+</div>
+<div class="col-sm">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <th scope="row">{{this.id}}</th>
+                        <td>{{this.price}}</td>
+                        <td>
+                            {{#if this.status}}
+                            <a style="color: blue" class="fa fa-sync-alt" href="#" alt="Đang giao"></a>
+                            <span>Đang giao hàng</span>
+                            {{else}}
+                            <a style="color: green" class="fa fa-check" href="#" alt="Giao hàng thành công"></a>
+                            <span>Giao hàng thành công</span>
+                            {{/if}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        Không có dữ liệu
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-header">
+            <strong>Tổng cộng: {{total}} đồng</strong>
+        </div>
+    </div>
+</div>

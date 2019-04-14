@@ -11,8 +11,8 @@
                                     aria-selected="true">Đã giao</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/order/delivering" role="tab" aria-controls="pills-profile"
-                                    aria-selected="false">Đang giao</a>
+                                <a class="nav-link active" href="/order/delivering" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false">Đang giao</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/order/receive" role="tab" aria-controls="pills-contact"
@@ -29,6 +29,7 @@
                                     <th>Ngày đặt hàng</th>
                                     <th>Địa chỉ</th>
                                     <th>Số điện thoại</th>
+                                    <th>Cập nhật</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,16 @@
                                     <td>{{this.create}}</td>
                                     <td>{{this.address}}</td>
                                     <td>{{this.phone}}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <a style="color: green" class="fa fa-check" href="#" alt="Giao hàng thành công"></a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                 <a style="color: red" class="fa fa-times" href="#" alt="Hủy đơn hàng"></a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {{/each}}
                                 {{/if}}

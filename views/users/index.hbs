@@ -15,6 +15,7 @@
                                     <th>Tên tài khoản</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,6 +25,14 @@
                                     <td>{{this.username}}</td>
                                     <td>{{this.email}}</td>
                                     <td>{{this.phone}}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <a style="color: green" class="fa fa-edit" href="/users/edit/1"
+                                                    alt="Sửa"></a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {{/each}}
                             </tbody>

@@ -93,4 +93,13 @@ router.get('/add', function (req, res, next) {
   res.render('users/add', { category: 'Tài khoản', categoryLink: '/users', title: 'Thêm tài khoản' });
 });
 
+router.get('/edit/:id', (req, res, next) => {
+  const data = {
+    username: '1512241',
+    email: 'dongkha97@gmail.com',
+    phone: '0914619571',
+  }
+  res.render('users/edit', {title: 'Thay đổi thông tin', data});
+});
+
 module.exports = router;

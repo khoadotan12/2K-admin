@@ -1,26 +1,20 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <strong>Thống kê trong tuần</strong>
+            <strong>Thống kê trong năm</strong>
         </div>
-        <div class="row justify-content-around">
+        <div class="row justify-content-center">
             <div class="card-body card-block col-sm-4">
                 <div class="form-group">
-                    <label class="form-control-label">Từ ngày</label>
+                    <label class="form-control-label">Chọn năm</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-calendar-week"></i></div>
-                        <input class="form-control" type="date">
-                        <button class="btn btn-primary">Chọn</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body card-block col-sm-4">
-                <div class="form-group">
-                    <label class="form-control-label">Đến ngày</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-calendar-week"></i></div>
-                        <input type="date" id="disabled-input" name="disabled-input" placeholder="Disabled" disabled=""
-                            class="form-control">
+                        <select name="select" id="select" class="form-control">
+                            {{#each years}}
+                            <option value={{this}}>{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <button class="btn btn-primary">Xem</button>
                     </div>
                 </div>
             </div>

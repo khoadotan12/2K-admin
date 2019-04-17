@@ -1,29 +1,39 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <strong>Thống kê trong tuần</strong>
+            <strong>Thống kê trong quý</strong>
         </div>
         <div class="row justify-content-around">
             <div class="card-body card-block col-sm-4">
                 <div class="form-group">
-                    <label class="form-control-label">Từ ngày</label>
+                    <label class="form-control-label">Chọn quý</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-calendar-week"></i></div>
-                        <input class="form-control" type="date">
-                        <button class="btn btn-primary">Chọn</button>
+                        <select name="select" id="select" class="form-control">
+                            <option value="0">Quý 1</option>
+                            <option value="1">Quý 2</option>
+                            <option value="2">Quý 3</option>
+                            <option value="3">Quý 4</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="card-body card-block col-sm-4">
                 <div class="form-group">
-                    <label class="form-control-label">Đến ngày</label>
+                    <label class="form-control-label">Chọn năm</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-calendar-week"></i></div>
-                        <input type="date" id="disabled-input" name="disabled-input" placeholder="Disabled" disabled=""
-                            class="form-control">
+                        <select name="select" id="select" class="form-control">
+                            {{#each years}}
+                            <option value={{this}}>{{this}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary">Xem thống kê</button>
         </div>
     </div>
 </div>

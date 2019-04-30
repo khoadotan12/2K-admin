@@ -1,36 +1,17 @@
-function formatPrice(price) {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 exports.index = (req, res, next) => {
-    const price = [20990000, 28600000, 12990000, 4990000];
     const data = [{
-        name: 'Samsung Galaxy S10',
-        brand: 'Samsung',
-        count: 100,
-        price: formatPrice(price[0]),
+        name: 'Samsung',
     }, {
-        name: 'iPhone XS Max 64 GB',
-        brand: 'Apple',
-        count: 542,
-        price: formatPrice(price[1]),
+        name: 'Apple',
     }, {
-        name: 'Samsung Galaxy M20',
-        brand: 'Samsung',
-        count: 70,
-        price: formatPrice(price[3]),
-    }, {
-        name: 'Xiaomi Mi Mix 3',
-        brand: 'Xiaomi',
-        count: 0,
-        price: formatPrice(price[2]),
+        name: 'Xiaomi',
     }];
     data.forEach((element, index) => {
         element.id = (index + 1).toString();
     });
-    res.render('products/index', { category: 'Sản phẩm', categoryLink: '/product', title: 'Danh sách sản phẩm', data })
+    res.render('brands/index', { category: 'Thương hiệu', categoryLink: '/brands', title: 'Danh sách thương hiệu', data })
 };
 
 exports.add = (req, res, next) => {
-    res.render('products/add', { category: 'Sản phẩm', categoryLink: '/product', title: 'Thêm sản phẩm' });
+    res.render('brands/add', { category: 'Thương hiệu', categoryLink: '/brands', title: 'Tạo thương hiệu' });
 };

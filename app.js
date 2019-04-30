@@ -1,17 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var productsRouter = require('./routes/products');
-var orderRouter = require('./routes/order');
-var revenueRouter = require('./routes/revenue');
-var topRouter = require('./routes/top');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
+const orderRouter = require('./routes/order');
+const revenueRouter = require('./routes/revenue');
+const topRouter = require('./routes/top');
+const brandsRouter = require('./routes/brands');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +30,7 @@ app.use('/product', productsRouter);
 app.use('/order', orderRouter);
 app.use('/revenue', revenueRouter);
 app.use('/top', topRouter);
+app.use('/brands', brandsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

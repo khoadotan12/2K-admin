@@ -7,15 +7,19 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Mã</th>
-                        <th>Tên</th>
+                        <th scope="col" style="width: 25%">Mã</th>
+                        <th scope="col" style="width: 25%">Tên</th>
+                        <th scope="col" style="width: 25%">Số lượng sản phẩm</th>
+                        <th scope="col" style="width: 25%">Đã bán</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each data}}
                     <tr>
-                        <th>{{this._id}}</th>
+                        <th scope="row">{{this._id}}</th>
                         <td>{{this.name}}</td>
+                        <td>{{this.count}}</td>
+                        <td>{{this.sold}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

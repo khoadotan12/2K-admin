@@ -1,14 +1,7 @@
-exports.index = (req, res, next) => {
-    const data = [{
-        name: 'Samsung',
-    }, {
-        name: 'Apple',
-    }, {
-        name: 'Xiaomi',
-    }];
-    data.forEach((element, index) => {
-        element.id = (index + 1).toString();
-    });
+const brandModel = require('../models/brand')
+
+exports.index = async (req, res, next) => {
+    const data = await brandModel.list();
     res.render('brands/index', { category: 'Thương hiệu', categoryLink: '/brands', title: 'Danh sách thương hiệu', data })
 };
 

@@ -7,14 +7,14 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Mã</th>
-                        <th scope="col">Tên</th>
+                        <th>Mã</th>
+                        <th>Tên</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each data}}
                     <tr>
-                        <th scope="row">{{this.id}}</th>
+                        <th>{{this._id}}</th>
                         <td>{{this.name}}</td>
                     </tr>
                     {{/each}}

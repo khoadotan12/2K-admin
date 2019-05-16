@@ -40,3 +40,11 @@ exports.getAll = async () => {
         return null;
     }
 }
+
+
+exports.add = (product, callback) => {
+    const newProduct = new productModel(product);
+    return newProduct.save(e => {
+        return callback(e);
+    })
+}

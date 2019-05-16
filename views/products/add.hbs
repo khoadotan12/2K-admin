@@ -24,6 +24,16 @@
                     </div>
                 </div>
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="type" class=" form-control-label">Loại</label></div>
+                    <div class="col-12 col-md-9">
+                        <select name="type" id="type" class="form-control" required>
+                            <option value="Hàng chính hãng">Hàng chính hãng</option>
+                            <option value="Hàng nhập khẩu">Hàng nhập khẩu</option>
+                            <option value="Đã kích hoạt">Đã kích hoạt</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
                     <div class="col col-md-3"><label for="stock" class=" form-control-label">Số lượng</label>
                     </div>
                     <div class="col-12 col-md-4"><input min="0" type="number" id="stock" name="stock"
@@ -35,9 +45,17 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="price" class=" form-control-label">Giá sản phẩm</label>
                     </div>
-                    <div class="col-12 col-md-4"><input onchange="formatPrice(this.value)" min="0" max="100000000" type="number" id="price" name="price"
-                            placeholder="Giá" class="form-control" required><small class="form-text text-muted">Đơn giá:
+                    <div class="col-12 col-md-4"><input onchange="formatPrice(this.value)" min="0" max="100000000"
+                            type="number" id="price" name="price" placeholder="Giá" class="form-control" required><small
+                            class="form-text text-muted">Đơn giá:
                             VNĐ</small></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="CPU" class=" form-control-label">Chip xử lý</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="CPU" name="CPU"
+                            placeholder="Qualcom Snapdragon 855" class="form-control" required>
+                    </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="OS" class=" form-control-label">Hệ điều hành</label></div>
@@ -151,5 +169,3 @@
         </div>
     </div>
 </div>
-
-<script src="/javascripts/addProduct.js"></script>

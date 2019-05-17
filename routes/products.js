@@ -10,4 +10,6 @@ router.get('/add', productsControllers.add);
 
 router.post('/', upload.single('product-image'), productsControllers.addPost);
 
+router.delete('/delete', productsControllers.delete);
+
 module.exports = router;

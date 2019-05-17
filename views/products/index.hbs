@@ -16,6 +16,7 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Giá</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,6 +28,18 @@
                                     <td>{{this.name}}</td>
                                     <td>{{this.stock}}</td>
                                     <td>{{this.price}}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <a style="color: green" class="fa fa-edit" href="/users/edit/1"
+                                                    alt="Sửa"></a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a style="color: red" class="fa fa-times"
+                                                    onclick="deleteProduct('{{this._id}}')" href="#" alt="Xoá"></a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {{/each}}
                                 {{/if}}
@@ -40,3 +53,5 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
+<script src="/javascripts/products.js"></script>

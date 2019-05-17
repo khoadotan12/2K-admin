@@ -49,3 +49,10 @@ exports.addPost = (req, res, next) => {
         return res.redirect('./');
     });
 };
+
+exports.delete = async (req, res, next) => {
+    const resp = await productModel.delete(req.body.id);
+    if (resp)
+        res.status(200).send("Success");
+    res.status(404).send("Not found ID");
+}

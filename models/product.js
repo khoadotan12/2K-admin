@@ -48,3 +48,12 @@ exports.add = (product, callback) => {
         return callback(e);
     })
 }
+
+exports.delete = async (id) => {
+    try {
+        return await productModel.findByIdAndRemove(id)
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}

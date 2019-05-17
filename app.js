@@ -14,10 +14,18 @@ const brandsRouter = require('./routes/brands');
 const bodyParser = require('body-parser');
 
 const app = express();
+const exphbs = require('express-handlebars');
+const hbsHelpers = exphbs.create({
+  helpers: require("./helpers/handlebars.js").helpers,
+  defaultLayout: '../layout',
+  extname: '.hbs'
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.engine('.hbs', hbsHelpers.engine);
+app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(express.json());

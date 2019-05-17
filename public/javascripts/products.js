@@ -1,13 +1,13 @@
 
 function deleteProduct(id) {
-    const r = confirm("Bạn có chắc muốn xoá sản phẩm");
+    const r = confirm("Bạn có chắc chắn muốn xoá sản phẩm?");
     if (r == true) {
         const URL = window.location.origin;
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    alert('Xoá sản phẩm thành công');
+                    alert('Xoá sản phẩm thành công!');
                     location.reload();
                 }
                 else {

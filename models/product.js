@@ -17,6 +17,7 @@ const ProductSchema = new Schema({
         RAM: Number,
         CPU: String,
         ROM: Number,
+        PIN: Number,
         OS: String,
         Screen: Number,
         sim: Number,
@@ -51,7 +52,16 @@ exports.add = (product, callback) => {
 
 exports.delete = async (id) => {
     try {
-        return await productModel.findByIdAndRemove(id)
+        return await productModel.findByIdAndRemove(id);
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+exports.getID = async (id) => {
+    try {
+        return await productModel.findById(id);
     } catch (e) {
         console.log(e);
         return null;

@@ -1,0 +1,246 @@
+<div class="col-sm">
+    <div class="card">
+        <div class="card-header">
+            <strong>Tạo sản phẩm mới</strong>
+        </div>
+        <div class="card-body card-block">
+            <form action="/product" id="form" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="brand" class=" form-control-label">Thương hiệu</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="brand" id="brand" class="form-control-lg form-control">
+                            {{#each brands}}
+                            {{#ifCond ../productInfo.brand this._id}}
+                            <option value="{{this._id}}" selected>{{this.name}}</option>
+                            {{else}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                            {{/ifCond}}
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="name" class=" form-control-label">Tên sản phẩm</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="name" name="name" placeholder="Tên"
+                            class="form-control" value="{{productInfo.name}}" required><small
+                            class="form-text text-muted">Nhập tên sản phẩm</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="type" class=" form-control-label">Loại</label></div>
+                    <div class="col-12 col-md-9">
+                        <select name="type" id="type" class="form-control" required>
+                            <option value="Hàng chính hãng">Hàng chính hãng</option>
+
+                            {{#ifCond productInfo.type "Hàng nhập khẩu"}}
+                            <option value="Hàng nhập khẩu" selected>Hàng nhập khẩu</option>
+                            {{else}}
+                            <option value="Hàng nhập khẩu">Hàng nhập khẩu</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.type "Đã kích hoạt"}}
+                            <option value="Đã kích hoạt" selected>Đã kích hoạt</option>
+                            {{else}}
+                            <option value="Đã kích hoạt">Đã kích hoạt</option>
+                            {{/ifCond}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="stock" class=" form-control-label">Số lượng</label>
+                    </div>
+                    <div class="col-12 col-md-4"><input min="0" type="number" id="stock" name="stock"
+                            placeholder="Số lượng" class="form-control" value="{{productInfo.stock}}" required><small
+                            class="help-block form-text">Đơn
+                            vị:
+                            cái</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="price" class=" form-control-label">Giá sản phẩm</label>
+                    </div>
+                    <div class="col-12 col-md-4"><input onchange="formatPrice(this.value)" min="0" max="100000000"
+                            type="number" id="price" value="{{productInfo.price}}" name="price" placeholder="Giá"
+                            class="form-control" required><small class="form-text text-muted">Đơn giá:
+                            VNĐ</small></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="CPU" class=" form-control-label">Chip xử lý</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="CPU" name="CPU"
+                            placeholder="Qualcom Snapdragon 855" class="form-control" value="{{productInfo.info.CPU}}"
+                            required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="OS" class=" form-control-label">Hệ điều hành</label></div>
+                    <div class="col-12 col-md-9">
+                        <select name="OS" id="OS" class="form-control" required>
+                            <option value="">Chọn hệ điều hành</option>
+
+                            {{#ifCond productInfo.info.OS "Android"}}
+                            <option value="Android" selected>Android</option>
+                            {{else}}
+                            <option value="Android">Android</option>
+                            {{/ifCond}}
+
+
+                            {{#ifCond productInfo.info.OS "iOS"}}
+                            <option value="iOS" selected>iOS</option>
+                            {{else}}
+                            <option value="iOS">iOS</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.OS "other"}}
+                            <option value="other" selected>Khác</option>
+                            {{else}}
+                            <option value="other">Khác</option>
+                            {{/ifCond}}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="backCamera" class=" form-control-label">Camera sau</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="backCamera" name="backCamera"
+                            placeholder="12 MP" class="form-control" value="{{productInfo.info.backCamera}}" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="frontCamera" class=" form-control-label">Camera trước</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="frontCamera" name="frontCamera"
+                            placeholder="8 MP" class="form-control" value="{{productInfo.info.frontCamera}}" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="RAM" class=" form-control-label">Dung lượng RAM</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="RAM" id="RAM" class="form-control-sm form-control" required>
+                            <option value="">Chọn dung lượng RAM</option>
+                            <option value="16">16 GB</option>
+                            <option value="8">8 GB</option>
+                            <option value="6">6 GB</option>
+                            <option value="4">4 GB</option>
+                            <option value="3">3 GB</option>
+                            <option value="2">2 GB</option>
+                            <option value="1">1 GB</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="ROM" class=" form-control-label">Bộ nhớ trong</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ROM" id="ROM" class="form-control-sm form-control" required>
+                            <option value="">Chọn bộ nhớ trong</option>
+
+                            {{#ifCond productInfo.info.ROM "1024"}}
+                            <option value="1024" selected>1 TB</option>
+                            {{else}}
+                            <option value="1024">1 TB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "512"}}
+                            <option value="512" selected>512 GB</option>
+                            {{else}}
+                            <option value="512">512 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "256"}}
+                            <option value="256" selected>256 GB</option>
+                            {{else}}
+                            <option value="256">256 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "128"}}
+                            <option value="128" selected>128 GB</option>
+                            {{else}}
+                            <option value="128">128 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "64"}}
+                            <option value="64" selected>64 GB</option>
+                            {{else}}
+                            <option value="64">64 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "32"}}
+                            <option value="32" selected>32 GB</option>
+                            {{else}}
+                            <option value="32">32 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "16"}}
+                            <option value="16" selected>16 GB</option>
+                            {{else}}
+                            <option value="16">16 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.ROM "8"}}
+                            <option value="8" selected>8 GB</option>
+                            {{else}}
+                            <option value="8">8 GB</option>
+                            {{/ifCond}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Số sim</label></div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="radio">
+                                <label for="1-sim" class="form-check-label ">
+                                    <input type="radio" id="1-sim" name="sim" value="1" class="form-check-input"
+                                        required>1 sim
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="2-sim" class="form-check-label ">
+                                    <input type="radio" id="2-sim" name="sim" value="2" class="form-check-input"
+                                        required>2 sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="pin" class=" form-control-label">Dung lượng pin</label>
+                    </div>
+                    <div class="col-12 col-md-4"><input min="500" max="40000" type="number" id="pin" name="PIN"
+                            value="{{productInfo.info.PIN}}" placeholder="Dung lượng pin" class="form-control"><small
+                            class="help-block form-text">Đơn
+                            vị: mAh</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="display" class=" form-control-label">Kích thước màn
+                            hình</label>
+                    </div>
+                    <div class="col-12 col-md-4"><input type="number" step=0.01 id="display" name="Screen"
+                            value="{{productInfo.info.Screen}}" placeholder="Kích thước màn hình" class="form-control"
+                            required><small class="help-block form-text">Đơn vị: inches</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="product-image" class=" form-control-label">Hình ảnh sản
+                            phẩm</label></div>
+                    <div class="col-12 col-md-9"><input type="file" accept="image/*" id="product-image"
+                            name="product-image" multiple="" class="form-control-file"></div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="submit" form="form" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus"></i> Thêm
+            </button>
+            <button type="reset" class="btn btn-danger btn-sm">
+                <i class="fa fa-sync-alt"></i> Nhập lại
+            </button>
+        </div>
+    </div>
+</div>

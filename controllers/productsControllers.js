@@ -1,6 +1,7 @@
 const { formatPrice } = require('../global');
 const productModel = require('../models/product');
 const brandModel = require('../models/brand');
+const createError = require('http-errors');
 
 function parseAddRequest(data) {
     const info = {};
@@ -53,6 +54,14 @@ exports.addPost = (req, res, next) => {
 exports.delete = async (req, res, next) => {
     const resp = await productModel.delete(req.body.id);
     if (resp)
-        res.status(200).send("Success");
+        return res.status(200).send("Success");
     res.status(404).send("Not found ID");
+}
+
+exports.edit = async (req, res, next) => {
+    const brands = await brandModel.list();
+    const productInfo = await productModel.getID(req.params.id);
+    if (productInfo)
+        return res.render('products/edit', { category: 'Sản phẩm', categoryLink: '/product', title: 'Sửa sản phẩm', brands, productInfo });
+    next(createError(404));
 }

@@ -7,10 +7,11 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" style="width: 25%">Mã</th>
-                        <th scope="col" style="width: 25%">Tên</th>
-                        <th scope="col" style="width: 25%">Số lượng sản phẩm</th>
-                        <th scope="col" style="width: 25%">Đã bán</th>
+                        <th scope="col">Mã</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Số lượng sản phẩm</th>
+                        <th scope="col">Đã bán</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +21,18 @@
                         <td>{{this.name}}</td>
                         <td>{{this.count}}</td>
                         <td>{{this.sold}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <a style="color: green" class="fa fa-edit" href="/brands/edit/{{this._id}}"
+                                        alt="Sửa"></a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a style="color: red" class="fa fa-times" onclick="deleteBrand('{{this._id}}')"
+                                        href="#" alt="Xoá"></a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -27,3 +40,5 @@
         </div>
     </div>
 </div>
+
+<script src="/javascripts/brands.js"></script>

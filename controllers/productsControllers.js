@@ -58,7 +58,6 @@ exports.add = async (req, res, next) => {
 exports.addPost = (req, res, next) => {
     const data = parseAddRequest(req.body);
     return productModel.add(data, (error) => {
-        console.log(error);
         if (error)
             return res.status(500).send(eror);
         return res.redirect('./');

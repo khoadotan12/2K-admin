@@ -9,10 +9,20 @@ exports.add = (req, res, next) => {
     res.render('brands/add', { category: 'Thương hiệu', categoryLink: '/brands', title: 'Tạo thương hiệu' });
 };
 
-exports.edit = (req, res, next) => {
+exports.edit = async (req, res) => {
+    const id = req.params.id;
+    const brandInfo = await brandModel.getID(id);
+    if (brandInfo)
+        return res.render('brands/edit', { category: 'thương hiệu', categoryLink: '/brands', title: 'Sửa thương hiệu', brandInfo });
+    res.status(404).send("Not found ID");
 };
 
-exports.editPost = (req, res, next) => {
+exports.editPost = async (req, res) => {
+    const newName = req.body.brand;
+    const resp = await brandModel.edit(req.body.brandID, newName);
+    if (resp)
+        return res.redirect('./');
+    res.status(404).send("Not found ID");
 };
 
 exports.addPost = (req, res, next) => {

@@ -4,12 +4,19 @@
             <strong>{{title}}</strong>
         </div>
         <div class="card-body card-block">
-            <form action="/brands/add" id="form" method="post" class="form-horizontal">
+            <form action="/brands/edit" id="form" method="post" class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">ID thương
+                            hiệu</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="brandID"
+                            placeholder="Disabled" readonly value="{{brandInfo._id}}" class="form-control" /></div>
+                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="brand" class=" form-control-label">Thương hiệu</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" name="brand" id="brand" class="form-control-lg form-control">
+                        <input type="text" name="brand" value={{brandInfo.name}} id="brand"
+                            class="form-control-lg form-control">
                         <small class="form-text text-muted">Nhập tên thương hiệu</small>
                     </div>
                 </div>
@@ -23,10 +30,7 @@
         </div>
         <div class="card-footer">
             <button type="submit" form="form" class="btn btn-primary btn-sm">
-                <i class="fa fa-plus"></i> Thêm
-            </button>
-            <button type="reset" form="form" class="btn btn-danger btn-sm">
-                <i class="fa fa-sync-alt"></i> Nhập lại
+                <i class="fa fa-save"></i> Lưu
             </button>
         </div>
     </div>

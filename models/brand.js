@@ -20,17 +20,6 @@ const brandModel = mongoose.model('brands', BrandSchema);
 //     }
 // }
 
-// exports.query = async (id) => {
-//     try {
-//         const model = await brandModel.findById(id);
-//         return model._doc;
-//     }
-//     catch (e) {
-//         console.log(e);
-//         return null;
-//     }
-// }
-
 exports.list = async () => {
     try {
         const model = await brandModel.find();
@@ -49,9 +38,28 @@ exports.add = (name, callback) => {
     })
 }
 
+exports.getID = async (id) => {
+    try {
+        const model = await brandModel.findById(id);
+        return model._doc;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
 exports.delete = async (id) => {
     try {
         return await brandModel.findByIdAndRemove(id);
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+exports.edit = async (id, name) => {
+    try {
+        return await brandModel.findByIdAndUpdate(id, { name });
     } catch (e) {
         console.log(e);
         return null;

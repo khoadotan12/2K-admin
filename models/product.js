@@ -31,7 +31,7 @@ exports.getAll = async () => {
     try {
         const products = await productModel.find();
         const result = Promise.all(products.map(async (product) => {
-            const brand = await brandModel.query(product.brand);
+            const brand = await brandModel.getID(product.brand);
             product._doc.brand = brand ? brand.name : 'Hãng khác';
             return product._doc;
         }));

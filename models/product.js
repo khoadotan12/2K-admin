@@ -12,7 +12,7 @@ const ProductSchema = new Schema({
     type: String,
     stock: Number,
     sold: Number,
-    color: [String],
+    colors: [String],
     info: {
         RAM: Number,
         CPU: String,
@@ -62,6 +62,15 @@ exports.delete = async (id) => {
 exports.getID = async (id) => {
     try {
         return await productModel.findById(id);
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+exports.edit = async (id, data) => {
+    try {
+        return await productModel.findByIdAndUpdate(id, data);
     } catch (e) {
         console.log(e);
         return null;

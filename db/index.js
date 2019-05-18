@@ -3,7 +3,7 @@ const config = require('./config');
 
 exports.connectDB = () => {
 
-    mongoose.connect(config.local, { useNewUrlParser: true });
+    mongoose.connect(config.local, { useNewUrlParser: true, useFindAndModify: false });
 
     var db = mongoose.connection;
 

@@ -4,7 +4,13 @@
             <strong>Tạo sản phẩm mới</strong>
         </div>
         <div class="card-body card-block">
-            <form action="/product" id="form" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form action="/product/edit" id="form" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">ID sản
+                            phẩm</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="productID"
+                            placeholder="Disabled" readonly value="{{productInfo._id}}" class="form-control" /></div>
+                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="brand" class=" form-control-label">Thương hiệu</label>
                     </div>
@@ -122,13 +128,55 @@
                     <div class="col-12 col-md-9">
                         <select name="RAM" id="RAM" class="form-control-sm form-control" required>
                             <option value="">Chọn dung lượng RAM</option>
+                            {{#ifCond productInfo.info.RAM "16"}}
+                            <option value="16" selected>16 GB</option>
+                            {{else}}
                             <option value="16">16 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "8"}}
+                            <option value="8" selected>8 GB</option>
+                            {{else}}
                             <option value="8">8 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "6"}}
+                            <option value="6" selected>6 GB</option>
+                            {{else}}
                             <option value="6">6 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "4"}}
+                            <option value="4" selected>4 GB</option>
+                            {{else}}
                             <option value="4">4 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "4"}}
+                            <option value="4" selected>4 GB</option>
+                            {{else}}
+                            <option value="4">4 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "3"}}
+                            <option value="3" selected>3 GB</option>
+                            {{else}}
                             <option value="3">3 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "2"}}
+                            <option value="2" selected>2 GB</option>
+                            {{else}}
                             <option value="2">2 GB</option>
+                            {{/ifCond}}
+
+                            {{#ifCond productInfo.info.RAM "1"}}
+                            <option value="1" selected>1 GB</option>
+                            {{else}}
                             <option value="1">1 GB</option>
+                            {{/ifCond}}
+
+
                         </select>
                     </div>
                 </div>
@@ -195,15 +243,26 @@
                         <div class="form-check">
                             <div class="radio">
                                 <label for="1-sim" class="form-check-label ">
+                                    {{#ifCond productInfo.info.sim "1"}}
+                                    <input type="radio" id="1-sim" name="sim" value="1" checked class="form-check-input"
+                                        required />1 sim
+                                    {{else}}
                                     <input type="radio" id="1-sim" name="sim" value="1" class="form-check-input"
-                                        required>1 sim
+                                        required />1 sim
+                                    {{/ifCond}}
                                 </label>
                             </div>
                             <div class="radio">
                                 <label for="2-sim" class="form-check-label ">
+                                    {{#ifCond productInfo.info.sim "2"}}
+                                    <input type="radio" id="2-sim" name="sim" value="2" checked class="form-check-input"
+                                        required />2 sim
+                                    {{else}}
                                     <input type="radio" id="2-sim" name="sim" value="2" class="form-check-input"
-                                        required>2 sim
+                                        required />2 sim
+                                    {{/ifCond}}
                                 </label>
+
                             </div>
                         </div>
                     </div>
@@ -226,6 +285,72 @@
                             required><small class="help-block form-text">Đơn vị: inches</small>
                     </div>
                 </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="display" class=" form-control-label">Màu sắc
+                        </label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="checkbox">
+                                <label for="black" class="form-check-label ">
+                                    {{#if productInfo.color1}}
+                                    <input type="checkbox" id="black" name="color1" value="Đen" class="form-check-input"
+                                        checked>Đen
+                                    {{else}}
+                                    <input type="checkbox" id="black" name="color1" value="Đen"
+                                        class="form-check-input">Đen
+                                    {{/if}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="gray" class="form-check-label ">
+                                    {{#if productInfo.color2}}
+                                    <input type="checkbox" id="gray" name="color2" value="Xám" class="form-check-input"
+                                        checked>Xám
+                                    {{else}}
+                                    <input type="checkbox" id="gray" name="color2" value="Xám"
+                                        class="form-check-input">Xám
+                                    {{/if}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="blue" class="form-check-label ">
+                                    {{#if productInfo.color3}}
+                                    <input type="checkbox" id="blue" name="color3" value="Xanh" class="form-check-input"
+                                        checked>Xanh
+                                    {{else}}
+                                    <input type="checkbox" id="blue" name="color3" value="Xanh"
+                                        class="form-check-input">Xanh
+                                    {{/if}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="gold" class="form-check-label ">
+                                    {{#if productInfo.color4}}
+                                    <input type="checkbox" id="gold" name="color4" value="Vàng" class="form-check-input"
+                                        checked>Vàng
+                                    {{else}}
+                                    <input type="checkbox" id="gold" name="color4" value="Vàng"
+                                        class="form-check-input">Vàng
+                                    {{/if}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="silver" class="form-check-label ">
+                                    {{#if productInfo.color5}}
+                                    <input type="checkbox" id="silver" name="color5" value="Bạc"
+                                        class="form-check-input" checked>Bạc
+                                    {{else}}
+                                    <input type="checkbox" id="silver" name="color5" value="Bạc"
+                                        class="form-check-input">Bạc
+                                    {{/if}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="product-image" class=" form-control-label">Hình ảnh sản
                             phẩm</label></div>
@@ -236,10 +361,7 @@
         </div>
         <div class="card-footer">
             <button type="submit" form="form" class="btn btn-primary btn-sm">
-                <i class="fa fa-plus"></i> Thêm
-            </button>
-            <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-sync-alt"></i> Nhập lại
+                <i class="fa fa-save"></i> Lưu
             </button>
         </div>
     </div>

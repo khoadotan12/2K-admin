@@ -23,7 +23,21 @@ function parseAddRequest(data) {
     result.price = parseInt(data.price);
     result.type = data.type;
     result.image = "";
-    result.color = [];
+    result.colors = [];
+    if (data.color1)
+        result.colors.push(data.color1);
+
+    if (data.color2)
+        result.colors.push(data.color2);
+
+    if (data.color3)
+        result.colors.push(data.color3);
+
+    if (data.color4)
+        result.colors.push(data.color4);
+
+    if (data.color5)
+        result.colors.push(data.color5);
     result.info = info;
     return result;
 }
@@ -61,7 +75,36 @@ exports.delete = async (req, res, next) => {
 exports.edit = async (req, res, next) => {
     const brands = await brandModel.list();
     const productInfo = await productModel.getID(req.params.id);
-    if (productInfo)
+    if (productInfo) {
+        productInfo.colors.forEach(color => {
+            switch (color) {
+                case "Đen":
+                    productInfo.color1 = true;
+                    break;
+                case "Xám":
+                    productInfo.color2 = true;
+                    break;
+                case "Xanh":
+                    productInfo.color3 = true;
+                    break;
+                case "Vàng":
+                    productInfo.color4 = true;
+                    break;
+                case "Bạc":
+                    productInfo.color5 = true;
+                    break;
+            }
+        });
+        console.log(productInfo);
         return res.render('products/edit', { category: 'Sản phẩm', categoryLink: '/product', title: 'Sửa sản phẩm', brands, productInfo });
+    }
     next(createError(404));
+}
+
+exports.editPost = async (req, res, next) => {
+    const data = parseAddRequest(req.body);
+    const resp = await productModel.edit(req.body.productID, data);
+    if (resp)
+        return res.redirect('./');
+    res.status(404).send("Not found ID");
 }

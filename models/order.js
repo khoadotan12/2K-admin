@@ -53,15 +53,6 @@ exports.list = async (status) => {
     }
 };
 
-exports.cancel = async (id) => {
-    try {
-        return await orderModel.findByIdAndUpdate(id, { status: -1 });
-    } catch (e) {
-        console.log(e);
-        return null;
-    }
-};
-
 exports.setState = async (id, state) => {
     try {
         if (state === 2 || state === -1) {

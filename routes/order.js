@@ -8,9 +8,9 @@ router.get('/delivering', orderControllers.delivering);
 
 router.get('/receive', orderControllers.receive);
 
-router.get('/cancel', orderControllers.cancelGET)
+router.get('/:id', orderControllers.info);
 
-router.put('/cancel', orderControllers.cancelPUT);
+router.get('/cancel', orderControllers.cancel);
 
 router.put('/state', orderControllers.changeState);
 

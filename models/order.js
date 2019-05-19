@@ -39,6 +39,10 @@ exports.list = async (status) => {
             }
             const dateCreated = new Date(order._doc.create);
             order._doc.create = dateCreated.toLocaleString('en-US');
+            if (status === 2 || status === -1) {
+                const dateDone = new Date(order._doc.done);
+                order._doc.done = dateDone.toLocaleString('en-US');
+            }
             return order._doc;
         });
         return await Promise.all(result);
@@ -60,6 +64,10 @@ exports.cancel = async (id) => {
 
 exports.setState = async (id, state) => {
     try {
+        if (state === 2 || state === -1) {
+            const moment = new Date();
+            return await orderModel.findByIdAndUpdate(id, { status: state, done: moment });
+        }
         return await orderModel.findByIdAndUpdate(id, { status: state });
     } catch (e) {
         console.log(e);

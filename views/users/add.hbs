@@ -2,12 +2,11 @@
     <div class="card">
         <div class="card-header">Tạo tài khoản mới</div>
         <div class="card-body card-block">
-            <form action="" method="post" class="">
+            <form action="/users/add" method="post" class="">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                        <input type="text" id="username" name="username" placeholder="Tên tài khoản"
-                            class="form-control">
+                        <input type="text" id="name" name="name" placeholder="Họ tên" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -27,6 +26,24 @@
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
                         <input type="text" id="phone" name="phone" placeholder="Số điện thoại" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-address-book"></i></div>
+                        <input type="text" id="address" name="address" placeholder="Địa chỉ" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
+                        <input type="text" id="ward" name="ward" placeholder="Phường" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-map-marker-alt"></i></div>
+                        <input type="text" id="district" name="district" placeholder="Quận" class="form-control">
                     </div>
                 </div>
                 <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Thêm</button>

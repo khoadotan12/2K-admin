@@ -12,7 +12,7 @@
                             <thead>
                                 <tr>
                                     <th>Mã khách hàng</th>
-                                    <th>Tên tài khoản</th>
+                                    <th>Họ tên</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
                                     <th>Hành động</th>
@@ -21,18 +21,18 @@
                             <tbody>
                                 {{#each users}}
                                 <tr>
-                                    <th scope="row">{{this.id}}</th>
-                                    <td>{{this.username}}</td>
+                                    <th scope="row">{{this._id}}</th>
+                                    <td>{{this.name}}</td>
                                     <td>{{this.email}}</td>
                                     <td>{{this.phone}}</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <a style="color: green" class="fa fa-edit" href="/users/edit/1"
+                                                <a style="color: green" class="fa fa-edit" href="/users/edit/{{this._id}}"
                                                     alt="Sửa"></a>
                                             </div>
                                             <div class="col-sm-3">
-                                                <a style="color: red" class="fa fa-times" onclick="deleteProduct({{this.id}}" href="#"
+                                                <a style="color: red" class="fa fa-times" onclick="deleteUser('{{this._id}}')" href="#"
                                                     alt="Xoá"></a>
                                             </div>
                                         </div>
@@ -49,3 +49,5 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
+<script src="/javascripts/users.js"></script>

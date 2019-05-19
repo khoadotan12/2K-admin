@@ -11,6 +11,10 @@ exports.add = (req, res, next) => {
     res.render('users/add', { category: 'Tài khoản', categoryLink: '/users', title: 'Thêm tài khoản' });
 };
 
+exports.addPost = (req, res, next) => {
+    
+};
+
 exports.list = (req, res, next) => {
     const users = [{
         username: 'lukka',

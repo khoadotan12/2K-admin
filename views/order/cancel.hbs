@@ -11,15 +11,15 @@
                                     aria-selected="true">Đã giao</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/order/delivering" role="tab"
-                                    aria-controls="pills-profile" aria-selected="false">Đang giao</a>
+                                <a class="nav-link" href="/order/delivering" role="tab" aria-controls="pills-profile"
+                                    aria-selected="false">Đang giao</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/order/receive" role="tab" aria-controls="pills-contact"
                                     aria-selected="false">Chưa giao</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/order/cancel" role="tab" aria-controls="pills-contact"
+                                <a class="nav-link active" href="/order/cancel" role="tab" aria-controls="pills-contact"
                                     aria-selected="false">Đã hủy</a>
                             </li>
                         </ul>
@@ -34,7 +34,6 @@
                                     <th>Ngày đặt hàng</th>
                                     <th>Địa chỉ</th>
                                     <th>Số điện thoại</th>
-                                    <th>Cập nhật</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,19 +45,6 @@
                                     <td>{{this.create}}</td>
                                     <td>{{this.address}}</td>
                                     <td>{{this.phone}}</td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <a style="color: green" class="fa fa-check" href="#"
-                                                    onclick="changeStateOrder('{{this._id}}', 2)"
-                                                    alt="Giao hàng thành công"></a>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <a style="color: red" class="fa fa-times" href="#" alt="Hủy đơn hàng"
-                                                    onclick="changeStateOrder('{{this._id}}', -1)"></a>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -71,4 +57,5 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
 <script src="/javascripts/orders.js"></script>

@@ -18,6 +18,10 @@
                                 <a class="nav-link" href="/order/receive" role="tab" aria-controls="pills-contact"
                                     aria-selected="false">Chưa giao</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/order/cancel" role="tab" aria-controls="pills-contact"
+                                    aria-selected="false">Đã hủy</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -25,20 +29,22 @@
                             <thead>
                                 <tr>
                                     <th>Mã đơn hàng</th>
+                                    <th>Email</th>
                                     <th>Tổng tiền</th>
                                     <th>Ngày đặt hàng</th>
-                                    <th>Ngày giao hàng</th>
                                     <th>Địa chỉ</th>
+                                    <th>Số điện thoại</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each data}}
                                 <tr>
-                                    <th scope="row">{{this.id}}</th>
+                                    <th scope="row">{{this._id}}</th>
+                                    <td>{{this.email}}</td>
                                     <td>{{this.price}}</td>
                                     <td>{{this.create}}</td>
-                                    <td>{{this.done}}</td>
                                     <td>{{this.address}}</td>
+                                    <td>{{this.phone}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -51,3 +57,5 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
+<script src="/javascripts/orders.js"></script>

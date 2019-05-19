@@ -17,7 +17,7 @@ exports.add = (user, callback) => {
     return newUser.save(e => {
         return callback(e);
     })
-}
+};
 
 exports.list = async () => {
     try {
@@ -28,7 +28,7 @@ exports.list = async () => {
         console.log(e);
         return null;
     }
-}
+};
 
 exports.delete = async (id) => {
     try {
@@ -37,4 +37,22 @@ exports.delete = async (id) => {
         console.log(e);
         return null;
     }
-}
+};
+
+exports.getID = async (id) => {
+    try {
+        return await userModel.findById(id);
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+};
+
+exports.edit = async (id, data) => {
+    try {
+        return await userModel.findByIdAndUpdate(id, data);
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+};

@@ -11,7 +11,7 @@ router.get('/edit/:id', userControllers.edit);
 
 router.post('/add', userControllers.addPost);
 
-// router.post('/edit', userControllers.editPost);
+router.post('/edit', userControllers.editPost);
 
 router.delete('/delete', userControllers.delete);
 

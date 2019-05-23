@@ -1,4 +1,4 @@
-const { formatPrice } = require('../global');
+const { formatPrice, URL } = require('../global');
 const productModel = require('../models/product');
 const brandModel = require('../models/brand');
 const createError = require('http-errors');
@@ -57,8 +57,7 @@ exports.add = async (req, res, next) => {
 
 exports.addPost = (req, res, next) => {
     const data = parseAddRequest(req.body);
-    console.log(req.file);
-    data.image = "https://admin-2k.herokuapp.com/images/products/" + req.file.filename; 
+    data.image = URL + "/images/products/" + req.file.filename;
     return productModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);
@@ -98,7 +97,6 @@ exports.edit = async (req, res, next) => {
                     break;
             }
         });
-        console.log(productInfo);
         return res.render('products/edit', { category: 'Sản phẩm', categoryLink: '/product', title: 'Sửa sản phẩm', brands, productInfo });
     }
     next(createError(404));

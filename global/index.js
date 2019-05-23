@@ -3,3 +3,5 @@ exports.formatPrice = (price) => {
 }
 
 exports.perPage = 10;
+
+exports.URL = "https://admin-2k.herokuapp.com"

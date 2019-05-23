@@ -1,5 +1,5 @@
 
-function deleteProduct(id) {
+function deleteProduct(id, brand) {
     const r = confirm("Bạn có chắc chắn muốn xoá sản phẩm?");
     if (r == true) {
         const URL = window.location.origin;
@@ -17,6 +17,6 @@ function deleteProduct(id) {
         };
         xhr.open("DELETE", URL + "/product/delete", true);
         xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-        xhr.send(JSON.stringify({ "id": id }));
+        xhr.send(JSON.stringify({ "id": id, "brand": brand }));
     }
 }

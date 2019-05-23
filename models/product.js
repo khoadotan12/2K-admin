@@ -43,11 +43,16 @@ exports.getAll = async () => {
 }
 
 
-exports.add = (product, callback) => {
-    const newProduct = new productModel(product);
-    return newProduct.save(e => {
-        return callback(e);
-    })
+exports.add = async (product, callback) => {
+    const brand = await brandModel.increaseCount(product.brand);
+    if (brand) {
+        const newProduct = new productModel(product);
+        return newProduct.save(e => {
+            return callback(e);
+        })
+    }
+    else
+        callback("Cannot increase");
 }
 
 exports.delete = async (id) => {

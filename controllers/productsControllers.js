@@ -46,7 +46,7 @@ exports.index = async (req, res, next) => {
     const data = await productModel.getAll();
     data.forEach(item => {
         item.price = formatPrice(item.price);
-    })
+    });
     res.render('products/index', { category: 'Sản phẩm', categoryLink: '/product', title: 'Danh sách sản phẩm', data })
 };
 
@@ -57,6 +57,8 @@ exports.add = async (req, res, next) => {
 
 exports.addPost = (req, res, next) => {
     const data = parseAddRequest(req.body);
+    console.log(req.file);
+    data.image = "https://admin-2k.herokuapp.com/images/products/" + req.file.filename; 
     return productModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);
@@ -66,8 +68,10 @@ exports.addPost = (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
     const resp = await productModel.delete(req.body.id);
-    if (resp)
+    if (resp) {
+        await brandModel.decreaseCount(req.body.brand);
         return res.status(200).send("Success");
+    }
     res.status(404).send("Not found ID");
 }
 

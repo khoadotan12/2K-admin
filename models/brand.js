@@ -66,6 +66,40 @@ exports.edit = async (id, name) => {
     }
 }
 
+exports.increaseCount = async (id) => {
+    try {
+        const brand = await brandModel.findById(id);
+        if (brand) {
+            const newCount = brand.count + 1;
+            return await brandModel.findByIdAndUpdate(id, { count: newCount });
+        }
+        else
+            return null;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+exports.decreaseCount = async (name) => {
+    try {
+        console.log(name);
+        const brand = await brandModel.findOne({ name });
+        if (brand) {
+            const newCount = brand.count - 1;
+            return await brandModel.findOneAndUpdate({ name }, { count: newCount });
+        }
+        else
+            return null;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+
+
+
 // exports.getTopList = async () => {
 //     try {
 //         const model = await brandModel.find().sort({ sold: -1 }).limit(3);

@@ -6,19 +6,20 @@ const BrandSchema = new Schema({
     count: Number,
     sold: Number,
     image: String,
+    revenue: Number,
 });
 const brandModel = mongoose.model('brands', BrandSchema);
 
-// exports.queryByName = async (name) => {
-//     try {
-//         const model = await brandModel.find({ name });
-//         return model;
-//     }
-//     catch (e) {
-//         console.log(e);
-//         return null;
-//     }
-// }
+exports.getTop10 = async () => {
+    try {
+        const model = await brandModel.find().sort({sold: -1}).limit(10);
+        return model;
+    }
+    catch (e) {
+        console.log(e);
+        return null;
+    }
+}
 
 exports.list = async () => {
     try {

@@ -42,6 +42,20 @@ exports.getAll = async () => {
     }
 }
 
+exports.getTop10 = async () => {
+    try {
+        const products = await productModel.find().sort({ sold: -1 }).limit(10);
+        const result = Promise.all(products.map(async (product) => {
+            const brand = await brandModel.getID(product.brand);
+            product._doc.brand = brand ? brand.name : 'Hãng khác';
+            return product._doc;
+        }));
+        return result;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
 
 exports.add = async (product, callback) => {
     const brand = await brandModel.increaseCount(product.brand);

@@ -4,16 +4,18 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/images/products' })
 const productsControllers = require('../controllers/productsControllers');
 
-router.get('/', productsControllers.index);
+const { isLoggedIn } = require('../global');
 
-router.get('/add', productsControllers.add);
+router.get('/', isLoggedIn,  productsControllers.index);
 
-router.get('/edit/:id', productsControllers.edit);
+router.get('/add', isLoggedIn,  productsControllers.add);
 
-router.post('/', upload.single('product-image'), productsControllers.addPost);
+router.get('/edit/:id', isLoggedIn,  productsControllers.edit);
 
-router.post('/edit', upload.single('product-image'), productsControllers.editPost);
+router.post('/', isLoggedIn,  upload.single('product-image'), isLoggedIn,  productsControllers.addPost);
 
-router.delete('/delete', productsControllers.delete);
+router.post('/edit', isLoggedIn,  upload.single('product-image'), isLoggedIn,  productsControllers.editPost);
+
+router.delete('/delete', isLoggedIn,  productsControllers.delete);
 
 module.exports = router;

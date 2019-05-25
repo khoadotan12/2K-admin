@@ -2,17 +2,19 @@ const express = require('express');
 const router = express.Router();
 const userControllers = require('../controllers/userControllers');
 
+const { isLoggedIn } = require('../global');
+
 /* GET users listing. */
-router.get('/', userControllers.list);
+router.get('/', isLoggedIn, userControllers.list);
 
-router.get('/add', userControllers.add);
+router.get('/add', isLoggedIn, userControllers.add);
 
-router.get('/edit/:id', userControllers.edit);
+router.get('/edit/:id', isLoggedIn, userControllers.edit);
 
-router.post('/add', userControllers.addPost);
+router.post('/add', isLoggedIn, userControllers.addPost);
 
-router.post('/edit', userControllers.editPost);
+router.post('/edit', isLoggedIn, userControllers.editPost);
 
-router.delete('/delete', userControllers.delete);
+router.delete('/delete', isLoggedIn, userControllers.delete);
 
 module.exports = router;

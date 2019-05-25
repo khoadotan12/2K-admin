@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 const revenueControllers = require('../controllers/revenueControllers');
 
-router.get('/date', revenueControllers.date);
+const { isLoggedIn } = require('../global');
 
-router.get('/week', revenueControllers.week);
+router.get('/date', isLoggedIn, revenueControllers.date);
 
-router.get('/month', revenueControllers.month);
+router.get('/week', isLoggedIn, revenueControllers.week);
 
-router.get('/quarter', revenueControllers.quarter);
+router.get('/month', isLoggedIn, revenueControllers.month);
 
-router.get('/year', revenueControllers.year);
+router.get('/quarter', isLoggedIn, revenueControllers.quarter);
+
+router.get('/year', isLoggedIn, revenueControllers.year);
 
 
 module.exports = router;

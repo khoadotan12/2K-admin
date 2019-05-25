@@ -3,9 +3,11 @@ const router = express.Router();
 
 const topControllers = require('../controllers/topControllers');
 
-router.get('/products', topControllers.products);
+const { isLoggedIn } = require('../global');
 
-router.get('/brands', topControllers.brands);
+router.get('/products', isLoggedIn, topControllers.products);
+
+router.get('/brands', isLoggedIn, topControllers.brands);
 
 
 

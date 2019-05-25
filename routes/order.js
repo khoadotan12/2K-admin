@@ -2,18 +2,20 @@ const express = require('express');
 const router = express.Router();
 const orderControllers = require('../controllers/orderControllers');
 
-router.get('/done', orderControllers.done);
+const { isLoggedIn } = require('../global');
 
-router.get('/add', orderControllers.add);
+router.get('/done', isLoggedIn, orderControllers.done);
 
-router.post('/', orderControllers.addPost);
+router.get('/add', isLoggedIn, orderControllers.add);
 
-router.get('/delivering', orderControllers.delivering);
+router.post('/', isLoggedIn, orderControllers.addPost);
 
-router.get('/receive', orderControllers.receive);
+router.get('/delivering', isLoggedIn, orderControllers.delivering);
 
-router.get('/cancel', orderControllers.cancel);
+router.get('/receive', isLoggedIn, orderControllers.receive);
 
-router.put('/state', orderControllers.changeState);
+router.get('/cancel', isLoggedIn, orderControllers.cancel);
+
+router.put('/state', isLoggedIn, orderControllers.changeState);
 
 module.exports = router;

@@ -53,3 +53,12 @@ exports.edit = async (id, data) => {
         return null;
     }
 };
+
+exports.getEmail = async (email) => {
+    try {
+        return await moderatorModel.findOne({ email });
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}

@@ -14,3 +14,9 @@ exports.loginGet = (req, res, next) => {
     res.sendFile(path.join(__dirname, '../public', 'login.html'));
 };
 
+exports.logout = (req, res) => {
+    req.session.destroy();
+    req.logout();
+    res.clearCookie('connect.sid');
+    res.redirect('/login');
+}

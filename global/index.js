@@ -5,3 +5,15 @@ exports.formatPrice = (price) => {
 exports.perPage = 10;
 
 exports.URL = "https://admin-2k.herokuapp.com"
+
+exports.isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login');
+}
+
+exports.isUnLoggedIn = (req, res, next) => {
+    if (req.isUnauthenticated())
+        return next();
+    res.redirect('/');
+}

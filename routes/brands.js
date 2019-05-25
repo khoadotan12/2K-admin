@@ -2,16 +2,18 @@ const express = require('express');
 const router = express.Router();
 const brandsController = require('../controllers/brandsControllers');
 
-router.get('/', brandsController.index);
+const { isLoggedIn } = require('../global');
 
-router.get('/add', brandsController.add);
+router.get('/', isLoggedIn,  brandsController.index);
 
-router.post('/add', brandsController.addPost);
+router.get('/add', isLoggedIn,  brandsController.add);
 
-router.get('/edit/:id', brandsController.edit);
+router.post('/add', isLoggedIn,  brandsController.addPost);
 
-router.post('/edit', brandsController.editPost);
+router.get('/edit/:id', isLoggedIn,  brandsController.edit);
 
-router.delete('/delete', brandsController.delete);
+router.post('/edit', isLoggedIn,  brandsController.editPost);
+
+router.delete('/delete', isLoggedIn,  brandsController.delete);
 
 module.exports = router;

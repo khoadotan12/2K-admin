@@ -33,3 +33,27 @@ function changeStateOrder(id, state) {
     }
 }
 
+var counter = 1;
+var dynamicInput = [];
+
+function addInput(data) {
+    const newdiv = document.createElement('div');
+    const json = JSON.parse(data);
+    newdiv.id = dynamicInput[counter];
+    let innerhtml = "<div class='row form-group' id='" + dynamicInput[0] + "'>";
+    innerhtml += "<div class='col col-md-3'></div>";
+    innerhtml += "<div class='col-6 col-md-6'><select id='product" + counter.toString() + "' name='product" + counter.toString() + "' class='form-control-sm form-control' required><option value=''>Chọn sản phẩm</option>"
+    json.forEach(item => {
+        innerhtml += "<option value='" + item._id + "'>" + item.name + "</option>"
+    });
+
+    innerhtml += "</select></div><div class='col-6 col-md-3'><input type='button' class='btn btn-primary btn-sm' onClick='removeInput(" + dynamicInput[counter] + ");' value='-' /></div></div>"
+    newdiv.innerHTML = innerhtml;
+    document.getElementById('formulario').appendChild(newdiv);
+    counter++;
+}
+
+function removeInput(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}

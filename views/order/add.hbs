@@ -1,0 +1,71 @@
+<div class="col-sm">
+    <div class="card">
+        <div class="card-header">
+            <strong>{{title}}</strong>
+        </div>
+        <div class="card-body card-block">
+            <form action="/order" id="form" method="post" class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="userID" class=" form-control-label">Tài khoản</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="userID" id="userID" class="form-control-lg form-control">
+                            {{#each users}}
+                            <option value="{{this._id}}">{{this.email}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="address" class=" form-control-label">Địa chỉ</label>
+                    </div>
+                    <div class="col-12 col-md-9"><input type="text" id="address" name="address" class="form-control"
+                            required><small class="form-text text-muted">227 Nguyễn Văn Cừ</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="ward" class=" form-control-label">Phường</label>
+                    </div>
+                    <div class="col-12 col-md-3"><input type="text" id="ward" name="ward" class="form-control"
+                            required><small class="form-text text-muted">Phường 4</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="district" class=" form-control-label">Quận</label>
+                    </div>
+                    <div class="col-12 col-md-3"><input type="text" id="district" name="district" class="form-control"
+                            required><small class="form-text text-muted">Quận 5</small>
+                    </div>
+                </div>
+                <div id="formulario">
+                    <div class="row form-group" id="dynamicInput[0]">
+                        <div class="col col-md-3"><label for="item" class=" form-control-label">Danh sách sản
+                                phẩm</label>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <select name="item" id="item" class="form-control-sm form-control" required>
+                                <option value="">Chọn sản phẩm</option>
+                                {{#each data}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{!-- <div class="col-6 col-md-3">
+                            <input type="button" class="btn btn-primary btn-sm" onClick="addInput('{{json data}}');" value="+" />
+                        </div> --}}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="submit" form="form" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus"></i> Thêm
+            </button>
+            <button type="reset" form="form" class="btn btn-danger btn-sm">
+                <i class="fa fa-sync-alt"></i> Nhập lại
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/orders.js"></script>

@@ -21,9 +21,11 @@ const OrderSchema = new Schema({
 const orderModel = mongoose.model('orders', OrderSchema);
 const userModel = require('./user');
 
-exports.add = (user, callback) => {
-    const newUser = new orderModel(user);
-    return newUser.save(e => {
+exports.add = (order, callback) => {
+    const newOrder = new orderModel(order);
+    console.log(order);
+    console.log(newOrder);
+    return newOrder.save(e => {
         return callback(e);
     })
 };

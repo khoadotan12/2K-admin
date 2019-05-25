@@ -7,6 +7,9 @@ var register = function (Handlebars) {
                 }
             return options.inverse(this);
         },
+        json: function(context) {
+            return JSON.stringify(context);
+        },
     }
     if (Handlebars && typeof Handlebars.registerHelper === "function") {
         for (var prop in helpers) {

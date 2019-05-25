@@ -4,6 +4,10 @@ const orderControllers = require('../controllers/orderControllers');
 
 router.get('/done', orderControllers.done);
 
+router.get('/add', orderControllers.add);
+
+router.post('/', orderControllers.addPost);
+
 router.get('/delivering', orderControllers.delivering);
 
 router.get('/receive', orderControllers.receive);

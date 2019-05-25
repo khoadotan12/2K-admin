@@ -4,6 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const session = require('express-session');
+const passport = require('./config/passport');
+const flash = require('connect-flash');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
@@ -36,6 +40,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash({ unsafe: true }));
+app.use(session({
+  secret: 'S6K445z(z#x1z/19gap,K',
+  saveUninitialized: false,
+  resave: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

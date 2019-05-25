@@ -1,3 +1,5 @@
+const path = require('path');
+
 exports.home = (req, res, next) => {
     const data = {
         revenue: '1,062,231,000',
@@ -7,3 +9,8 @@ exports.home = (req, res, next) => {
     };
     res.render('home/index', { title: 'Trang chủ', data });
 };
+
+exports.loginGet = (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../public', 'login.html'));
+};
+

@@ -28,7 +28,3 @@ exports.changeState = async (req, res, next) => {
         return res.status(200).send("Success");
     res.status(404).send("Not found ID");
 };
-
-exports.info = async (req, res, next) => {
-    
-};

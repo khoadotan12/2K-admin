@@ -50,6 +50,7 @@ app.use(session({
   secret: 'S6K445z(z#x1z/19gap,K',
   saveUninitialized: false,
   resave: false,
+  cookie: { maxAge: 1800000 },
 }));
 
 app.use(passport.initialize());

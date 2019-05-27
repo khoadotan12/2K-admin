@@ -71,7 +71,7 @@ exports.delete = async (req, res, next) => {
         await brandModel.decreaseCount(req.body.brand);
         return res.status(200).send("Success");
     }
-    res.status(404).send("Not found ID");
+    next(createError(404));
 }
 
 exports.edit = async (req, res, next) => {
@@ -107,5 +107,5 @@ exports.editPost = async (req, res, next) => {
     const resp = await productModel.edit(req.body.productID, data);
     if (resp)
         return res.redirect('./');
-    res.status(404).send("Not found ID");
+        next(createError(404));
 }

@@ -50,7 +50,6 @@ exports.list = async (status) => {
         return await Promise.all(result);
     }
     catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -62,8 +61,7 @@ exports.setState = async (id, state) => {
             return await orderModel.findByIdAndUpdate(id, { status: state, done: moment });
         }
         return await orderModel.findByIdAndUpdate(id, { status: state });
-    } catch (e) {
-        console.log(e);
+    } catch (e) {       
         return null;
     }
 };
@@ -71,7 +69,6 @@ exports.delete = async (id) => {
     try {
         return await orderModel.findByIdAndRemove(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -80,7 +77,6 @@ exports.getID = async (id) => {
     try {
         return await orderModel.findById(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -89,7 +85,6 @@ exports.edit = async (id, data) => {
     try {
         return await orderModel.findByIdAndUpdate(id, data);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };

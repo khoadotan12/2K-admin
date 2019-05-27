@@ -6,49 +6,50 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                        <input type="text" id="name" name="name" placeholder="Họ tên" class="form-control">
+                        <input type="text" required id="name" name="name" placeholder="Họ tên" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                        <input type="email" id="email" name="email" placeholder="Email" class="form-control">
+                        <input type="email" onchange="validateEmail()" required id="email" name="email" placeholder="Email" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                        <input type="password" id="password" name="password" placeholder="Mật khẩu"
+                        <input type="password" required id="password" name="password" placeholder="Mật khẩu"
                             class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                        <input type="number" id="phone" name="phone" placeholder="Số điện thoại" class="form-control">
+                        <input type="number" required id="phone" name="phone" placeholder="Số điện thoại" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-address-book"></i></div>
-                        <input type="text" id="address" name="address" placeholder="Địa chỉ" class="form-control">
+                        <input type="text" required id="address" name="address" placeholder="Địa chỉ" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
-                        <input type="text" id="ward" name="ward" placeholder="Phường" class="form-control">
+                        <input type="text" required id="ward" name="ward" placeholder="Phường" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-map-marker-alt"></i></div>
-                        <input type="text" id="district" name="district" placeholder="Quận" class="form-control">
+                        <input type="text" required id="district" name="district" placeholder="Quận" class="form-control">
                     </div>
                 </div>
-                <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Thêm</button>
+                <div class="form-actions form-group"><button id="registerButton" type="submit" class="btn btn-success btn-sm">Thêm</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script src="/javascripts/users.js"></script>

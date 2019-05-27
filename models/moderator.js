@@ -22,7 +22,6 @@ exports.list = async () => {
         return moderators;
     }
     catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -31,7 +30,6 @@ exports.delete = async (id) => {
     try {
         return await moderatorModel.findByIdAndRemove(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -40,7 +38,6 @@ exports.getID = async (id) => {
     try {
         return await moderatorModel.findById(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -49,7 +46,6 @@ exports.edit = async (id, data) => {
     try {
         return await moderatorModel.findByIdAndUpdate(id, data);
     } catch (e) {
-        console.log(e);
         return null;
     }
 };
@@ -58,7 +54,6 @@ exports.getEmail = async (email) => {
     try {
         return await moderatorModel.findOne({ email });
     } catch (e) {
-        console.log(e);
         return null;
     }
 }

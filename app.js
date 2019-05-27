@@ -15,6 +15,8 @@ const orderRouter = require('./routes/order');
 const revenueRouter = require('./routes/revenue');
 const topRouter = require('./routes/top');
 const brandsRouter = require('./routes/brands');
+const moderatorsRouter = require('./routes/moderators');
+
 const bodyParser = require('body-parser');
 
 const { isLoggedIn } = require('./global');
@@ -60,6 +62,7 @@ app.use('/order', orderRouter);
 app.use('/revenue', revenueRouter);
 app.use('/top', topRouter);
 app.use('/brands', brandsRouter);
+app.use('/moderators', moderatorsRouter);
 
 // catch 404 and forward to error handler
 app.use(isLoggedIn, function (req, res, next) {

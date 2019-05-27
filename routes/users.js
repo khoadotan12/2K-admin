@@ -15,6 +15,8 @@ router.post('/add', isLoggedIn, userControllers.addPost);
 
 router.post('/edit', isLoggedIn, userControllers.editPost);
 
+router.post('/verifyEmail', isLoggedIn, userControllers.verifyEmail);
+
 router.delete('/delete', isLoggedIn, userControllers.delete);
 
 module.exports = router;

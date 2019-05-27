@@ -37,7 +37,6 @@ exports.getAll = async () => {
         }));
         return result;
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -52,7 +51,6 @@ exports.getTop10 = async () => {
         }));
         return result;
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -73,7 +71,6 @@ exports.delete = async (id) => {
     try {
         return await productModel.findByIdAndRemove(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -82,7 +79,6 @@ exports.getID = async (id) => {
     try {
         return await productModel.findById(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -91,7 +87,6 @@ exports.edit = async (id, data) => {
     try {
         return await productModel.findByIdAndUpdate(id, data);
     } catch (e) {
-        console.log(e);
         return null;
     }
 }

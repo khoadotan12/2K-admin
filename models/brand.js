@@ -16,7 +16,6 @@ exports.getTop10 = async () => {
         return model;
     }
     catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -27,7 +26,6 @@ exports.list = async () => {
         return model;
     }
     catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -44,7 +42,6 @@ exports.getID = async (id) => {
         const model = await brandModel.findById(id);
         return model._doc;
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -53,7 +50,6 @@ exports.delete = async (id) => {
     try {
         return await brandModel.findByIdAndRemove(id);
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -62,7 +58,6 @@ exports.edit = async (id, name) => {
     try {
         return await brandModel.findByIdAndUpdate(id, { name });
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -77,7 +72,6 @@ exports.increaseCount = async (id) => {
         else
             return null;
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
@@ -93,21 +87,6 @@ exports.decreaseCount = async (name) => {
         else
             return null;
     } catch (e) {
-        console.log(e);
         return null;
     }
 }
-
-
-
-
-// exports.getTopList = async () => {
-//     try {
-//         const model = await brandModel.find().sort({ sold: -1 }).limit(3);
-//         return model;
-//     }
-//     catch (e) {
-//         console.log(e);
-//         return null;
-//     }
-// }

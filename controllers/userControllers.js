@@ -5,12 +5,12 @@ const createError = require('http-errors');
 exports.edit = async (req, res, next) => {
     const data = await userModel.getID(req.params.id);
     if (data)
-        return res.render('users/edit', { title: 'Thay đổi thông tin', data });
+        return res.render('users/edit', { title: 'Thay đổi thông tin khách hàng', data });
     next(createError(404));
 };
 
 exports.add = (req, res, next) => {
-    res.render('users/add', { category: 'Tài khoản', categoryLink: '/users', title: 'Thêm tài khoản' });
+    res.render('users/add', { category: 'Khách hàng', categoryLink: '/users', title: 'Thêm tài khoản khách hàng' });
 };
 
 exports.addPost = (req, res, next) => {
@@ -32,17 +32,24 @@ exports.editPost = async (req, res, next) => {
     const resp = await userModel.edit(newUser.userID, newUser);
     if (resp)
         return res.redirect('./');
-    res.status(404).send("Not found ID");
+    next(createError(404));
 };
 
 exports.list = async (req, res, next) => {
     const users = await userModel.list();
-    res.render('users/index', { category: 'Tài khoản', categoryLink: '/users', title: 'Danh sách tài khoản', users });
+    res.render('users/index', { category: 'Khách hàng', categoryLink: '/users', title: 'Danh sách khách hàng', users });
 };
 
 exports.delete = async (req, res, next) => {
     const resp = await userModel.delete(req.body.id);
     if (resp)
         return res.status(200).send("Success");
-    res.status(404).send("Not found ID");
+    next(createError(404));
 };
+
+exports.verifyEmail = async (req, res) => {
+    const user = await userModel.getEmail(req.body.email);
+    if (user)
+        return res.send("Email đã được sử dụng.");
+    return res.status(200).send();
+}

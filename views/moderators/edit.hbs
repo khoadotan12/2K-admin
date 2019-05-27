@@ -5,21 +5,21 @@
         </div>
         {{#if data}}
         <div class="card-body card-block">
-            <form action="/users/edit" id="form" method="post" class="form-horizontal">
+            <form action="/moderators/edit" id="form" method="post" class="form-horizontal">
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">ID tài khoản</label></div>
-                   <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="userID"
+                    <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="moderatorID"
                             placeholder="Disabled" readonly value="{{data._id}}" class="form-control" /></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="name" class=" form-control-label">Họ tên</label></div>
                     <div class="col-12 col-md-9"><input type="text" value="{{data.name}}" id="name" name="name"
-                            placeholder="Nguyễn Văn A" class="form-control"></div>
+                            placeholder="Nguyễn Văn A" class="form-control" required></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="email" class=" form-control-label">Email</label>
                     </div>
-                    <div class="col-12 col-md-9"><input type="email" disabled value="{{data.email}}" id="email" name="email"
+                    <div class="col-12 col-md-9"><input type="email" value="{{data.email}}" disabled id="email" name="email"
                             placeholder="Email" class="form-control"></div>
                 </div>
                 <div class="row form-group">
@@ -32,25 +32,7 @@
                     <div class="col col-md-3"><label for="phone" class=" form-control-label">Số điện thoại</label>
                     </div>
                     <div class="col-12 col-md-9"><input type="number" value="{{data.phone}}" id="phone" name="phone"
-                            placeholder="Số điện thoại" class="form-control"></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="address" class=" form-control-label">Địa chỉ</label>
-                    </div>
-                    <div class="col-12 col-md-9"><input type="text" value="{{data.address}}" id="address" name="address"
-                            placeholder="227 Nguyễn Văn Cừ" class="form-control"></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="ward" class=" form-control-label">Phường</label>
-                    </div>
-                    <div class="col-12 col-md-9"><input type="text" value="{{data.ward}}" id="ward" name="ward"
-                            placeholder="4" class="form-control"></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="district" class=" form-control-label">Quận</label>
-                    </div>
-                    <div class="col-12 col-md-9"><input type="text" value="{{data.district}}" id="district"
-                            name="district" placeholder="Bình Thạnh" class="form-control"></div>
+                            placeholder="Số điện thoại" class="form-control" required></div>
                 </div>
             </form>
         </div>

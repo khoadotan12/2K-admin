@@ -15,6 +15,8 @@ router.post('/add', isLoggedIn, moderatorControllers.addPost);
 
 router.post('/edit', isLoggedIn, moderatorControllers.editPost);
 
+router.post('/verifyEmail', isLoggedIn, moderatorControllers.verifyEmail);
+
 router.delete('/delete', isLoggedIn, moderatorControllers.delete);
 
 module.exports = router;

@@ -1,6 +1,9 @@
-const SHA256 = require('crypto-js/sha256');
+
 const moderatorModel = require('../models/moderator');
 const createError = require('http-errors');
+const bcrypt = require('bcrypt');
+const { saltRounds, emailFail } = require('../global');
+
 
 exports.edit = async (req, res, next) => {
     const data = await moderatorModel.getID(req.params.id);
@@ -13,12 +16,12 @@ exports.add = (req, res, next) => {
     res.render('moderators/add', { category: 'Quản trị', categoryLink: '/moderators', title: 'Thêm quản trị viên' });
 };
 
-exports.addPost = (req, res, next) => {
+exports.addPost = async (req, res, next) => {
     const newModerator = req.body;
-    newModerator.password = SHA256(newModerator.password).toString();
+    newModerator.password = await bcrypt.hash(newModerator.password, saltRounds);
     return moderatorModel.add(newModerator, (error) => {
         if (error)
-            return res.status(500).send(eror);
+            return res.status(500).send();
         return res.redirect('./');
     });
 };
@@ -28,7 +31,7 @@ exports.editPost = async (req, res, next) => {
     if (newModerator.password == '')
         delete newModerator.password;
     else
-        newModerator.password = SHA256(newModerator.password).toString();
+        newModerator.password = await bcrypt.hash(newModerator.password, saltRounds);
     const resp = await moderatorModel.edit(newModerator.moderatorID, newModerator);
     if (resp)
         return res.redirect('./');
@@ -46,3 +49,11 @@ exports.delete = async (req, res, next) => {
         return res.status(200).send("Success");
     next(createError(404));
 };
+
+
+exports.verifyEmail = async (req, res) => {
+    const user = await moderatorModel.getEmail(req.body.email);
+    if (user)
+        return res.status(200).send(emailFail);
+    return res.status(200).send();
+}

@@ -1,6 +1,8 @@
-const SHA256 = require('crypto-js/sha256');
-const userModel = require('../models/user');
+const bcrypt = require('bcrypt');
 const createError = require('http-errors');
+
+const userModel = require('../models/user');
+const { saltRounds, emailFail } = require('../global');
 
 exports.edit = async (req, res, next) => {
     const data = await userModel.getID(req.params.id);
@@ -13,13 +15,13 @@ exports.add = (req, res, next) => {
     res.render('users/add', { category: 'Khách hàng', categoryLink: '/users', title: 'Thêm tài khoản khách hàng' });
 };
 
-exports.addPost = (req, res, next) => {
+exports.addPost = async (req, res, next) => {
     const newUser = req.body;
-    newUser.password = SHA256(newUser.password).toString();
+    newUser.password = await bcrypt.hash(newUser.password, saltRounds);
     return userModel.add(newUser, (error) => {
         if (error)
-            return res.status(500).send(eror);
-        return res.redirect('./');
+            return res.status(500).send(error);
+        return res.redirect('/');
     });
 };
 
@@ -28,7 +30,7 @@ exports.editPost = async (req, res, next) => {
     if (newUser.password == '')
         delete newUser.password;
     else
-        newUser.password = SHA256(newUser.password).toString();
+        newUser.password = await bcrypt.hash(newUser.password, saltRounds);
     const resp = await userModel.edit(newUser.userID, newUser);
     if (resp)
         return res.redirect('./');
@@ -50,6 +52,6 @@ exports.delete = async (req, res, next) => {
 exports.verifyEmail = async (req, res) => {
     const user = await userModel.getEmail(req.body.email);
     if (user)
-        return res.send("Email đã được sử dụng.");
+        return res.send(emailFail);
     return res.status(200).send();
 }

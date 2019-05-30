@@ -2,9 +2,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const modModel = require('../../models/moderator');
 const SHA256 = require("crypto-js/sha256");
+const bcrypt = require('bcrypt');
+const { saltRounds } = require('../../global');
 
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -18,21 +20,22 @@ passport.deserializeUser((id, done) => {
 passport.use(new LocalStrategy(
     {
         usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
     },
-    (req, username, password, done) => {
+    (username, password, done) => {
         modModel.getEmail(username).then((user) => {
             if (!user)
-                return done(null, false, req.flash('loginMessage', 'Email hoặc mật khẩu không hợp lệ.'));
-            const hash = SHA256(password).toString();
-            if (hash === user.password) {
-                return done(null, user);
-            }
-            return done(null, false, req.flash('loginMessage', 'Email hoặc mật khẩu không hợp lệ.'));
+                return done(null, false);
+            bcrypt.compare(password, user.password, (err, res) => {
+                if (err)
+                    return done(null, false);
+                if (res) {
+                    return done(null, user);
+                }
+                return done(null, false);
+            });
         }).catch((err) => {
-            return done(err);
-        })
+                return done(err);
+            })
     }
 ));
 

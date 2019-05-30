@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { brandsSchemaName } = require('../global');
 
 const Schema = mongoose.Schema;
 const BrandSchema = new Schema({
@@ -8,7 +9,7 @@ const BrandSchema = new Schema({
     image: String,
     revenue: Number,
 });
-const brandModel = mongoose.model('brands', BrandSchema);
+const brandModel = mongoose.model(brandsSchemaName, BrandSchema);
 
 exports.getTop10 = async () => {
     try {

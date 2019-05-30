@@ -1,9 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const modModel = require('../../models/moderator');
-const SHA256 = require("crypto-js/sha256");
 const bcrypt = require('bcrypt');
-const { saltRounds } = require('../../global');
 
 passport.serializeUser(function (user, done) {
     done(null, user._id);

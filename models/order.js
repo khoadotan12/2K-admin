@@ -23,8 +23,6 @@ const userModel = require('./user');
 
 exports.add = (order, callback) => {
     const newOrder = new orderModel(order);
-    console.log(order);
-    console.log(newOrder);
     return newOrder.save(e => {
         return callback(e);
     })

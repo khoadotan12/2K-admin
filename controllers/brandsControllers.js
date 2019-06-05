@@ -33,7 +33,6 @@ exports.addPost = (req, res, next) => {
     const data = {};
     data.name = name;
     data.image = "/images/brands/" + req.file.filename;
-    console.log(data.image);
     return brandModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);

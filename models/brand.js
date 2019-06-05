@@ -13,7 +13,7 @@ const brandModel = mongoose.model(brandsSchemaName, BrandSchema);
 
 exports.getTop10 = async () => {
     try {
-        const model = await brandModel.find().sort({sold: -1}).limit(10);
+        const model = await brandModel.find().sort({ sold: -1 }).limit(10);
         return model;
     }
     catch (e) {
@@ -79,7 +79,6 @@ exports.increaseCount = async (id) => {
 
 exports.decreaseCount = async (name) => {
     try {
-        console.log(name);
         const brand = await brandModel.findOne({ name });
         if (brand) {
             const newCount = brand.count - 1;
@@ -87,6 +86,23 @@ exports.decreaseCount = async (name) => {
         }
         else
             return null;
+    } catch (e) {
+        return null;
+    }
+}
+
+exports.setSoldAndRevenue = async (id, price) => {
+    try {
+        const brand = await brandModel.findById(id);
+        console.log(price);
+        if (brand) {
+            const newSold = brand.sold + 1;
+            const newRevenue = brand.revenue + price;
+            return await brandModel.findByIdAndUpdate(id, { sold: newSold, revenue: newRevenue});
+        }
+        else
+            return null;
+       
     } catch (e) {
         return null;
     }

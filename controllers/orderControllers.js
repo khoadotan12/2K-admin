@@ -1,6 +1,7 @@
 const orderModel = require('../models/order');
 const productModel = require('../models/product');
 const userModel = require('../models/user');
+const brandModel = require('../models/brand');
 
 exports.done = async (req, res, next) => {
     const data = await orderModel.list(2);
@@ -22,6 +23,8 @@ exports.addPost = async (req, res, next) => {
     const productInfo = await productModel.getID(data.item);
     if (productInfo)
         data.price = productInfo.price;
+    const updatesold = await productModel.setSold(productInfo._id, productInfo.sold + 1);
+    const updatebrand = await brandModel.setSoldAndRevenue(productInfo.brand, data.price);
     if (data.item)
         delete data.item;
     return orderModel.add(data, (error) => {

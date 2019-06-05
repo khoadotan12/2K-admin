@@ -90,3 +90,11 @@ exports.edit = async (id, data) => {
         return null;
     }
 }
+
+exports.setSold = async (id, sold) => {
+    try {
+        return await productModel.findByIdAndUpdate(id, { sold });
+    } catch (e) {
+        return null;
+    }
+}

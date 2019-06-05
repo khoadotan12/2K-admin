@@ -98,3 +98,13 @@ exports.setSold = async (id, sold) => {
         return null;
     }
 }
+
+exports.count = async () => {
+    try {
+        const count = await productModel.find().count();
+        return count;
+    }
+    catch (e) {
+        return null;
+    }
+};

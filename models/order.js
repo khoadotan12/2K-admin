@@ -86,3 +86,13 @@ exports.edit = async (id, data) => {
         return null;
     }
 };
+
+exports.count = async () => {
+    try {
+        const count = await orderModel.find().count();
+        return count;
+    }
+    catch (e) {
+        return null;
+    }
+};

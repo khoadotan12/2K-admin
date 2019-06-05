@@ -32,7 +32,7 @@ exports.list = async () => {
 }
 
 exports.add = (data, callback) => {
-    const newBrand = new brandModel({ name: data.name, count: 0, sold: 0, image: data.image });
+    const newBrand = new brandModel({ name: data.name, revenue: 0, count: 0, sold: 0, image: data.image });
     return newBrand.save(e => {
         return callback(e);
     })
@@ -98,12 +98,12 @@ exports.setSoldAndRevenue = async (id, price) => {
         if (brand) {
             const newSold = brand.sold + 1;
             const newRevenue = brand.revenue + price;
-            return await brandModel.findByIdAndUpdate(id, { sold: newSold, revenue: newRevenue});
+            return await brandModel.findByIdAndUpdate(id, { sold: newSold, revenue: newRevenue });
         }
         else
             return null;
-       
+
     } catch (e) {
         return null;
     }
-}
+};

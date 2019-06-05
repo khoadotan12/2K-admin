@@ -2,14 +2,22 @@ const path = require('path');
 const userModel = require('../models/user');
 const productModel = require('../models/product');
 const brandModel = require('../models/brand');
+const orderController = require('../models/order');
+
+const { formatPrice } = require('../global');
 
 exports.home = async (req, res, next) => {
     const users = await userModel.count();
+    const products = await productModel.count();
+    const orders = await orderController.count();
+    const brands = await brandModel.list();
+    let revenue = 0;
+    brands.forEach(item => revenue += item.revenue ? item.revenue : 0);
     const data = {
-        revenue: '1,062,231,000',
+        revenue: formatPrice(revenue),
         users,
-        products: 765,
-        orders: 4166,
+        products,
+        orders,
     };
     res.render('home/index', { title: 'Trang chủ', data });
 };

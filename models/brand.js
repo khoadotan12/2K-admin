@@ -31,8 +31,8 @@ exports.list = async () => {
     }
 }
 
-exports.add = (name, callback) => {
-    const newBrand = new brandModel({ name, count: 0, sold: 0, image: "" });
+exports.add = (data, callback) => {
+    const newBrand = new brandModel({ name: data.name, count: 0, sold: 0, image: data.image });
     return newBrand.save(e => {
         return callback(e);
     })
@@ -55,9 +55,9 @@ exports.delete = async (id) => {
     }
 }
 
-exports.edit = async (id, name) => {
+exports.edit = async (id, data) => {
     try {
-        return await brandModel.findByIdAndUpdate(id, { name });
+        return await brandModel.findByIdAndUpdate(id, { name: data.name, image: data.image });
     } catch (e) {
         return null;
     }

@@ -1,9 +1,13 @@
 const path = require('path');
+const userModel = require('../models/user');
+const productModel = require('../models/product');
+const brandModel = require('../models/brand');
 
-exports.home = (req, res, next) => {
+exports.home = async (req, res, next) => {
+    const users = await userModel.count();
     const data = {
         revenue: '1,062,231,000',
-        users: 1717,
+        users,
         products: 765,
         orders: 4166,
     };

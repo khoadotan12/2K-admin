@@ -1,4 +1,4 @@
-const { formatPrice, URL } = require('../global');
+const { formatPrice } = require('../global');
 const productModel = require('../models/product');
 const brandModel = require('../models/brand');
 const createError = require('http-errors');
@@ -57,7 +57,7 @@ exports.add = async (req, res, next) => {
 
 exports.addPost = (req, res, next) => {
     const data = parseAddRequest(req.body);
-    data.image = URL + "/images/products/" + req.file.filename;
+    data.image = "/images/products/" + req.file.filename;
     return productModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);

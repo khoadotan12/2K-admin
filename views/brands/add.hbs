@@ -4,7 +4,7 @@
             <strong>{{title}}</strong>
         </div>
         <div class="card-body card-block">
-            <form action="/brands/add" id="form" method="post" class="form-horizontal">
+            <form action="/brands/add" id="form" method="post" enctype="multipart/form-data" class="form-horizontal">
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="brand" class=" form-control-label">Thương hiệu</label>
                     </div>
@@ -13,12 +13,11 @@
                         <small class="form-text text-muted">Nhập tên thương hiệu</small>
                     </div>
                 </div>
-                {{!-- <div class="row form-group">
-                    <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Hình ảnh sản
-                            phẩm</label></div>
-                    <div class="col-12 col-md-9"><input type="file" accept="image/*" id=" file-multiple-input"
-                            name="file-multiple-input" multiple="" class="form-control-file"></div>
-                </div> --}}
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="brand-image" class=" form-control-label">Hình ảnh thương hiệu</label></div>
+                    <div class="col-12 col-md-9"><input type="file" accept="image/*" id="brand-image"
+                            name="brand-image" multiple="" class="form-control-file"></div>
+                </div>
             </form>
         </div>
         <div class="card-footer">

@@ -1,4 +1,4 @@
-const brandModel = require('../models/brand')
+const brandModel = require('../models/brand');
 
 exports.index = async (req, res, next) => {
     const data = await brandModel.list();
@@ -19,7 +19,10 @@ exports.edit = async (req, res) => {
 
 exports.editPost = async (req, res) => {
     const newName = req.body.brand;
-    const resp = await brandModel.edit(req.body.brandID, newName);
+    const data = {};
+    data.name = newName;
+    data.image = "/images/brands/" + req.file.filename;
+    const resp = await brandModel.edit(req.body.brandID, data);
     if (resp)
         return res.redirect('./');
     res.status(404).send("Not found ID");
@@ -27,7 +30,11 @@ exports.editPost = async (req, res) => {
 
 exports.addPost = (req, res, next) => {
     const name = req.body.brand;
-    return brandModel.add(name, (error) => {
+    const data = {};
+    data.name = name;
+    data.image = "/images/brands/" + req.file.filename;
+    console.log(data.image);
+    return brandModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);
         return res.redirect('./');

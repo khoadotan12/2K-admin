@@ -4,7 +4,7 @@ exports.formatPrice = (price) => {
 
 exports.perPage = 10;
 
-exports.URL = "https://admin-2k.herokuapp.com";
+// exports.URL = "https://admin-2k.herokuapp.com";
 
 exports.saltRounds = 10;
 
@@ -13,9 +13,9 @@ exports.brandsSchemaName = 'brands';
 exports.emailFail = 'Email đã được sử dụng.';
 
 exports.isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated())
+    // if (req.isAuthenticated())
         return next();
-    res.redirect('/login');
+    // res.redirect('/login');
 }
 
 exports.isUnLoggedIn = (req, res, next) => {

@@ -29,6 +29,16 @@ exports.list = async () => {
     }
 };
 
+exports.count = async () => {
+    try {
+        const count = await userModel.find().count();
+        return count;
+    }
+    catch (e) {
+        return null;
+    }
+};
+
 exports.delete = async (id) => {
     try {
         return await userModel.findByIdAndRemove(id);

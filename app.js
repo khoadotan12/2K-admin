@@ -19,7 +19,7 @@ const moderatorsRouter = require('./routes/moderators');
 
 const bodyParser = require('body-parser');
 
-const { isLoggedIn } = require('./global');
+const { isLoggedIn, secretSession } = require('./global');
 
 const app = express();
 const exphbs = require('express-handlebars');
@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash({ unsafe: true }));
 app.use(session({
-  secret: 'S6K445z(z#x1z/19gap,K',
+  secret:  secretSession,
   saveUninitialized: false,
   resave: false,
   cookie: { maxAge: 1800000 },

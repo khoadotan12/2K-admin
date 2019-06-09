@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { usersSchemaName } = require('../global');
+
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
@@ -10,7 +12,7 @@ const UserSchema = new Schema({
     ward: String,
     district: String,
 });
-const userModel = mongoose.model('users', UserSchema);
+const userModel = mongoose.model(usersSchemaName, UserSchema);
 
 exports.add = (user, callback) => {
     const newUser = new userModel(user);

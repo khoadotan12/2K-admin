@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { modsSchemaName } = require('../global');
+
 const Schema = mongoose.Schema;
 const moderatorSchema = new Schema({
     name: String,
@@ -7,7 +9,7 @@ const moderatorSchema = new Schema({
     email: String,
     phone: String,
 });
-const moderatorModel = mongoose.model('moderators', moderatorSchema);
+const moderatorModel = mongoose.model(modsSchemaName, moderatorSchema);
 
 exports.add = (moderator, callback) => {
     const newmoderator = new moderatorModel(moderator);

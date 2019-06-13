@@ -68,7 +68,7 @@ exports.addPost = (req, res, next) => {
 exports.delete = async (req, res, next) => {
     const resp = await productModel.delete(req.body.id);
     if (resp) {
-        await brandModel.decreaseCount(req.body.brand);
+        brandModel.decreaseCount(req.body.brand);
         return res.status(200).send("Success");
     }
     next(createError(404));
@@ -107,5 +107,5 @@ exports.editPost = async (req, res, next) => {
     const resp = await productModel.edit(req.body.productID, data);
     if (resp)
         return res.redirect('./');
-        next(createError(404));
+    next(createError(404));
 }

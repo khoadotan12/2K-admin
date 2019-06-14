@@ -11,7 +11,10 @@ function deleteMod(id) {
                     location.reload();
                 }
                 else {
-                    alert('Lỗi: ', xhr.status);
+                    if (xhr.status === 400)
+                        alert('Không thể xóa tài khoản của chính mình');
+                    else
+                        alert('Lỗi: ', xhr.status);
                 }
             }
         };

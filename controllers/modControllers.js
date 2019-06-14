@@ -44,6 +44,10 @@ exports.list = async (req, res, next) => {
 };
 
 exports.delete = async (req, res, next) => {
+    const id = req.body.id;
+    const userID = req.user.id;
+    if (id === userID)
+        return res.status(400).send("Invalid ID");
     const resp = await moderatorModel.delete(req.body.id);
     if (resp)
         return res.status(200).send("Success");

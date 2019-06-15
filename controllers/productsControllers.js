@@ -44,7 +44,7 @@ function parseAddRequest(data) {
 
     if (data.color7)
         result.colors.push(data.color7);
-        
+
     if (data.color8)
         result.colors.push(data.color8);
     result.info = info;
@@ -122,6 +122,7 @@ exports.edit = async (req, res, next) => {
 
 exports.editPost = async (req, res, next) => {
     const data = parseAddRequest(req.body);
+    data.image = "/images/products/" + req.file.filename;
     const resp = await productModel.edit(req.body.productID, data);
     if (resp)
         return res.redirect('./');

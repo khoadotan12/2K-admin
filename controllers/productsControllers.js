@@ -38,6 +38,15 @@ function parseAddRequest(data) {
 
     if (data.color5)
         result.colors.push(data.color5);
+
+    if (data.color6)
+        result.colors.push(data.color6);
+
+    if (data.color7)
+        result.colors.push(data.color7);
+        
+    if (data.color8)
+        result.colors.push(data.color8);
     result.info = info;
     return result;
 }
@@ -94,6 +103,15 @@ exports.edit = async (req, res, next) => {
                     break;
                 case "Bạc":
                     productInfo.color5 = true;
+                    break;
+                case "Đỏ":
+                    productInfo.color6 = true;
+                    break;
+                case "Tím":
+                    productInfo.color7 = true;
+                    break;
+                case "Hồng":
+                    productInfo.color8 = true;
                     break;
             }
         });

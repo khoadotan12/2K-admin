@@ -57,6 +57,8 @@ exports.delete = async (id) => {
 
 exports.edit = async (id, data) => {
     try {
+        if (!data.image)
+            return await brandModel.findByIdAndUpdate(id, { name: data.name });
         return await brandModel.findByIdAndUpdate(id, { name: data.name, image: data.image });
     } catch (e) {
         return null;

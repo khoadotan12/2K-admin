@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'public/images/brands' });
 const brandsController = require('../controllers/brandsControllers');
 
-const { isLoggedIn } = require('../global');
+const { isLoggedIn, imageTempPath } = require('../global');
+
+const upload = multer({ dest: imageTempPath });
 
 router.get('/', isLoggedIn, brandsController.index);
 

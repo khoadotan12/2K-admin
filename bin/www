@@ -8,8 +8,6 @@ var app = require('../app');
 var debug = require('debug')('adminpage:server');
 var http = require('http');
 
-setInterval(() => http.get('https://admin-2k.herokuapp.com'), 300000);
-
 /**
  * Get port from environment and store in Express.
  */

@@ -1,4 +1,8 @@
 const brandModel = require('../models/brand');
+const imgurUploader = require('imgur-uploader');
+const fs = require('fs');
+const { imageTempPath } = require('../global');
+
 
 exports.index = async (req, res, next) => {
     const data = await brandModel.list();
@@ -21,7 +25,10 @@ exports.editPost = async (req, res) => {
     const newName = req.body.brand;
     const data = {};
     data.name = newName;
-    data.image = "/images/brands/" + req.file.filename;
+    if (req.file) {
+        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+        data.image = image.link;
+    }
     const resp = await brandModel.edit(req.body.brandID, data);
     if (resp)
         return res.redirect('./');
@@ -32,7 +39,8 @@ exports.addPost = (req, res, next) => {
     const name = req.body.brand;
     const data = {};
     data.name = name;
-    data.image = "/images/brands/" + req.file.filename;
+    const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+    data.image = image.link;
     return brandModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);

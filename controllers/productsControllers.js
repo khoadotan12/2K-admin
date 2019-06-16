@@ -1,7 +1,9 @@
-const { formatPrice } = require('../global');
+const imgurUploader = require('imgur-uploader');
+const { formatPrice, imageTempPath } = require('../global');
 const productModel = require('../models/product');
 const brandModel = require('../models/brand');
 const createError = require('http-errors');
+const fs = require('fs');
 
 function parseAddRequest(data) {
     const info = {};
@@ -66,7 +68,8 @@ exports.add = async (req, res, next) => {
 
 exports.addPost = (req, res, next) => {
     const data = parseAddRequest(req.body);
-    data.image = "/images/products/" + req.file.filename;
+    const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+    data.image = image.link;
     return productModel.add(data, (error) => {
         if (error)
             return res.status(500).send(eror);
@@ -122,8 +125,10 @@ exports.edit = async (req, res, next) => {
 
 exports.editPost = async (req, res, next) => {
     const data = parseAddRequest(req.body);
-    if (req.file)
-        data.image = "/images/products/" + req.file.filename;
+    if (req.file) {
+        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+        data.image = image.link;
+    }
     const resp = await productModel.edit(req.body.productID, data);
     if (resp)
         return res.redirect('./');

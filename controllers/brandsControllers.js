@@ -3,7 +3,6 @@ const imgurUploader = require('imgur-uploader');
 const fs = require('fs');
 const { imageTempPath } = require('../global');
 
-
 exports.index = async (req, res, next) => {
     const data = await brandModel.list();
     res.render('brands/index', { category: 'Thương hiệu', categoryLink: '/brands', title: 'Danh sách thương hiệu', data })
@@ -26,8 +25,12 @@ exports.editPost = async (req, res) => {
     const data = {};
     data.name = newName;
     if (req.file) {
-        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
-        data.image = image.link;
+        try {
+            const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+            data.image = image.link;
+        } catch (err) {
+            return res.status(500).send(err);
+        }
     }
     const resp = await brandModel.edit(req.body.brandID, data);
     if (resp)
@@ -39,11 +42,15 @@ exports.addPost = async (req, res, next) => {
     const name = req.body.brand;
     const data = {};
     data.name = name;
-    const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
-    data.image = image.link;
+    try {
+        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+        data.image = image.link;
+    } catch (err) {
+        return res.status(500).send(err);
+    }
     return brandModel.add(data, (error) => {
         if (error)
-            return res.status(500).send(eror);
+            return res.status(500).send(error);
         return res.redirect('./');
     });
 };

@@ -96,7 +96,6 @@ exports.decreaseCount = async (name) => {
 exports.setSoldAndRevenue = async (id, price) => {
     try {
         const brand = await brandModel.findById(id);
-        console.log(price);
         if (brand) {
             const newSold = brand.sold + 1;
             const newRevenue = brand.revenue + price;

@@ -29,7 +29,7 @@ exports.addPost = async (req, res, next) => {
         delete data.item;
     return orderModel.add(data, (error) => {
         if (error)
-            return res.status(500).send(eror);
+            return res.status(500).send(error);
         return res.redirect('/order/receive');
     });
 };

@@ -11,7 +11,7 @@ passport.deserializeUser((id, done) => {
     modModel.getID(id).then((user) => {
         done(null, user);
     }).catch(function (err) {
-        console.log(err);
+
     })
 });
 

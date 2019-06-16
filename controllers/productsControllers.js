@@ -68,11 +68,15 @@ exports.add = async (req, res, next) => {
 
 exports.addPost = async (req, res, next) => {
     const data = parseAddRequest(req.body);
-    const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
-    data.image = image.link;
+    try {
+        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+        data.image = image.link;
+    } catch (err) {
+        return res.status(500).send(err);
+    }
     return productModel.add(data, (error) => {
         if (error)
-            return res.status(500).send(eror);
+            return res.status(500).send(error);
         return res.redirect('./');
     });
 };
@@ -126,8 +130,12 @@ exports.edit = async (req, res, next) => {
 exports.editPost = async (req, res, next) => {
     const data = parseAddRequest(req.body);
     if (req.file) {
-        const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
-        data.image = image.link;
+        try {
+            const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
+            data.image = image.link;
+        } catch (err) {
+            return res.status(500).send(err);
+        }
     }
     const resp = await productModel.edit(req.body.productID, data);
     if (resp)

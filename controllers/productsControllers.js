@@ -66,7 +66,7 @@ exports.add = async (req, res, next) => {
     res.render('products/add', { category: 'Sản phẩm', categoryLink: '/product', title: 'Thêm sản phẩm', brands });
 };
 
-exports.addPost = (req, res, next) => {
+exports.addPost = async (req, res, next) => {
     const data = parseAddRequest(req.body);
     const image = await imgurUploader(fs.readFileSync(imageTempPath + '/' + req.file.filename));
     data.image = image.link;

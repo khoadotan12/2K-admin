@@ -35,7 +35,7 @@ exports.editPost = async (req, res) => {
     res.status(404).send("Not found ID");
 };
 
-exports.addPost = (req, res, next) => {
+exports.addPost = async (req, res, next) => {
     const name = req.body.brand;
     const data = {};
     data.name = name;

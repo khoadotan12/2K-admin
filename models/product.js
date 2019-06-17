@@ -88,6 +88,7 @@ exports.edit = async (id, data) => {
         const product = await productModel.findById(id);
         if (!data.image)
             data.image = product.image;
+        data.sold = product.sold;
         return await productModel.findByIdAndUpdate(id, data);
     } catch (e) {
         return null;
